@@ -1,0 +1,7 @@
+interface:
+  display_name: "Verificación SDD de Recetaria"
+  short_description: "Verifica cambios SDD de Recetaria"
+  default_prompt: "Usa $recetaria-verify para verificar este cambio contra sus criterios y controles del repositorio."
+
+policy:
+  allow_implicit_invocation: true

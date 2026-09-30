@@ -73,7 +73,16 @@ GitHub Actions comprobará en los pushes a `main` y `dev`, y en los pull request
 - Toda la documentación del proyecto se escribe en español.
 - El código y sus identificadores se escriben normalmente en inglés.
 - La documentación permanente se mantiene dentro de `docs/` cuando está justificada.
-- Las skills para agentes no se crearán todavía; su creación queda como trabajo futuro pendiente.
+
+## Desarrollo guiado por especificaciones y agentes
+
+- Los cambios relevantes seguirán el proceso SDD documentado en [`proceso-sdd.md`](proceso-sdd.md).
+- Las especificaciones aprobadas se conservarán en `docs/specs/NNN-nombre-descriptivo/` junto con su plan técnico y sus tareas.
+- Las skills compartidas del proyecto estarán en `.agents/skills/` y podrán activarse automáticamente o mediante una invocación explícita.
+- Los agentes personalizados del proyecto estarán en `.codex/agents/` y los revisores SDD funcionarán en modo de solo lectura.
+- Únicamente el agente principal podrá modificar archivos durante una implementación aprobada.
+- La aprobación de una especificación o de un plan siempre requerirá una confirmación explícita del desarrollador.
+- La aprobación del plan no autorizará por sí sola la implementación.
 
 ## Definition of Done
 

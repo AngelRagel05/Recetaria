@@ -28,11 +28,15 @@ El contexto tecnológico y de servicios confirmado es el siguiente:
 
 La arquitectura inicial confirmada integra Laravel y React mediante Inertia.js. En esta fase no se utilizará una SPA separada ni una API independiente como arquitectura principal. Las decisiones técnicas iniciales y sus límites están recogidos en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md).
 
+Los cambios relevantes se desarrollan mediante el proceso SDD definido en [`docs/proceso-sdd.md`](docs/proceso-sdd.md). Este proceso complementa las reglas de este archivo y no sustituye ninguna aprobación exigida por ellas.
+
 ## 2. Rol de los agentes
 
 Los agentes son asistentes técnicos y herramientas de apoyo. No sustituyen al desarrollador y no tienen autoridad para definir requisitos, arquitectura, reglas de negocio ni la dirección del producto.
 
 Los agentes pueden ayudar a analizar, investigar, implementar, revisar, probar y documentar trabajo dentro de un alcance aprobado explícitamente. Deben respetar las decisiones que ya haya tomado el desarrollador y no deben reinterpretarlas ni ampliar su alcance de manera implícita.
+
+Los agentes personalizados `requirements_reviewer`, `architecture_reviewer` y `test_reviewer` son revisores de solo lectura. Únicamente el agente principal puede modificar archivos durante una implementación aprobada.
 
 Antes de actuar sobre una decisión relevante, un agente debe:
 
@@ -84,6 +88,18 @@ Estos permisos no deben utilizarse para introducir una convención, abstracción
 
 ## 5. Flujo de trabajo obligatorio antes de la implementación
 
+Las funcionalidades, reglas de negocio, cambios en modelos de datos, arquitectura, autenticación, seguridad, dependencias, servicios externos, almacenamiento, despliegue, cambios significativos de experiencia de usuario y refactorizaciones estructurales deben seguir el proceso SDD completo de [`docs/proceso-sdd.md`](docs/proceso-sdd.md).
+
+Para estos cambios se aplican tres puertas obligatorias:
+
+1. Una especificación en estado `draft` debe superar la revisión de `requirements_reviewer` y recibir una aprobación explícita del desarrollador.
+2. El plan técnico y sus tareas deben superar la revisión de `architecture_reviewer` y recibir una aprobación explícita del desarrollador.
+3. Incluso con la especificación y el plan aprobados, la implementación no comienza hasta que el desarrollador la solicite explícitamente.
+
+El silencio, la ausencia de objeciones, una petición de revisión o la aprobación de una fase anterior no autorizan la fase siguiente. Un resultado `BLOCKED` de cualquier revisor impide avanzar hasta resolver sus bloqueos.
+
+Las erratas, el formato y los ajustes internos evidentes sin cambios de comportamiento utilizan un flujo ligero: plan breve, implementación, verificación y revisión del diff. En caso de duda sobre la clasificación, se debe preguntar al desarrollador.
+
 Antes de implementar una tarea relevante, un agente debe:
 
 1. Leer `AGENTS.md` por completo.
@@ -117,6 +133,15 @@ Una tarea no debe considerarse terminada hasta que, cuando corresponda y el repo
 - Se debe informar brevemente de las decisiones de implementación no triviales tomadas dentro del margen autorizado y explicar su motivo cuando resulte útil para comprender o revisar el resultado.
 - La documentación necesaria debe estar actualizada.
 - `MEMORY.md` debe reflejar el estado operativo actual.
+
+En los cambios sujetos a SDD, `test_reviewer` debe comprobar la relación entre los criterios de aceptación, las pruebas y las verificaciones ejecutadas. Un resultado `BLOCKED` impide marcar el cambio como completado.
+
+Cuando el cierre dependa de publicación o CI externo, `MEMORY.md` se actualiza en dos etapas:
+
+1. Tras la verificación local, registra que la implementación local está completa y que la publicación o el CI siguen pendientes.
+2. Tras publicar y comprobar el CI, elimina ese pendiente y refleja el resultado externo real.
+
+La actualización documental de la segunda etapa cierra el estado del cambio funcional y no vuelve a abrirlo por el CI generado por esa misma actualización.
 
 No se debe marcar una tarea como completada si alguno de estos puntos aplicables sigue pendiente.
 

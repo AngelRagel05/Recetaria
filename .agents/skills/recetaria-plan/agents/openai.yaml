@@ -1,0 +1,7 @@
+interface:
+  display_name: "Plan SDD de Recetaria"
+  short_description: "Planifica cambios SDD aprobados"
+  default_prompt: "Usa $recetaria-plan para convertir esta especificación aprobada en un plan técnico y tareas."
+
+policy:
+  allow_implicit_invocation: true

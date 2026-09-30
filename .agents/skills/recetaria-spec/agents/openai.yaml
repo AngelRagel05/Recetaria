@@ -1,0 +1,7 @@
+interface:
+  display_name: "Especificación SDD de Recetaria"
+  short_description: "Define especificaciones SDD de Recetaria"
+  default_prompt: "Usa $recetaria-spec para convertir este cambio relevante en una especificación SDD revisable."
+
+policy:
+  allow_implicit_invocation: true

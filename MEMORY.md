@@ -2,19 +2,19 @@
 
 ## Foco actual
 
-Validar en GitHub la corrección del fallo de las pruebas PHP cuando los recursos de Vite aún no están compilados.
+Publicar y validar en una sesión nueva de Codex el sistema SDD implantado localmente.
 
 ## Estado actual
 
 - La base Laravel 12 + React + Inertia está confirmada en `main` y `dev`, con frontend TypeScript en `resources/js` y autenticación Breeze adaptada a CSS Modules y CSS global, sin Tailwind.
-- Las pruebas PHP y frontend, el lint, el formato y el build local pasan.
-- El workflow de CI y auditorías de dependencias existe en `main` y `dev`; la ampliación de sus disparadores está publicada en `dev` y todavía no en `main`.
-- La corrección de las pruebas PHP está preparada en la rama local `fix/ci-vite-manifest`. Las 25 pruebas pasan incluso sin `public/build/manifest.json`, pero falta verificar esta corrección en GitHub.
-- Las decisiones aprobadas y las instrucciones de puesta en marcha están en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) y [`README.md`](README.md).
+- La corrección del CI del commit `0ba1d54` está publicada en `main` y `dev`. Su ejecución remota no se ha podido verificar desde el entorno actual.
+- El sistema SDD está implementado localmente en `feat/sdd-agents`: proceso permanente, tres skills compartidas y tres agentes revisores de solo lectura.
+- Las skills se han validado con `quick_validate.py` y su descubrimiento se ha confirmado mediante la interfaz local de Codex. La configuración TOML, las simulaciones de las puertas, las pruebas, el lint, el formato y el build pasan.
+- Las decisiones aprobadas están en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) y el flujo está definido en [`docs/proceso-sdd.md`](docs/proceso-sdd.md).
 
 ## En curso
 
-No hay trabajo local en curso; la corrección está pendiente de publicación y de una nueva ejecución del CI.
+La implantación está completada y verificada localmente; su publicación está pendiente de autorización. Después de publicarla habrá que comprobar el CI y el descubrimiento de skills y agentes en una sesión nueva de Codex.
 
 ## Alcance de esta memoria
 
@@ -37,7 +37,7 @@ Cuando deje de ser relevante:
 
 ## Decisiones pendientes
 
-No hay decisiones técnicas pendientes que bloqueen esta base inicial. Cualquier nueva decisión necesaria corresponderá al desarrollador; un agente no debe convertirla en una decisión aceptada sin aprobación explícita.
+No hay decisiones técnicas pendientes para publicar esta implantación. Cualquier nueva decisión necesaria corresponderá al desarrollador; un agente no debe convertirla en una decisión aceptada sin aprobación explícita.
 
 ## Contexto relevante
 
@@ -48,7 +48,7 @@ No hay decisiones técnicas pendientes que bloqueen esta base inicial. Cualquier
 
 ## Problemas conocidos
 
-El CI de `dev` ha fallado porque las pruebas PHP requerían un manifiesto de Vite que aún no existía en el runner. La corrección local está validada, pero aún no se ha comprobado en GitHub.
+La instalación local de Codex CLI (`0.121.0`) no puede completar una sesión conversacional nueva con el catálogo de modelos actual. El descubrimiento de las skills sí se ha comprobado mediante la interfaz local; la prueba integral de sesión nueva queda pendiente en una instalación compatible.
 
 ## Deuda técnica
 
@@ -56,7 +56,8 @@ Actualmente no hay ninguna deuda técnica registrada.
 
 ## Siguientes pasos
 
-- Publicar la corrección cuando el desarrollador lo solicite y comprobar que el CI de `dev` pase.
-- Registrar únicamente las decisiones tomadas explícitamente por el desarrollador.
+- Publicar la rama cuando el desarrollador lo solicite.
+- Comprobar el CI y abrir una sesión nueva de Codex compatible para confirmar el descubrimiento y la ejecución de skills y agentes.
+- Tras esas comprobaciones, retirar los pendientes de esta memoria y reflejar el resultado real.
 
 Estos siguientes pasos describen la dirección natural del proyecto; no constituyen una autorización automática para ejecutar trabajo.
