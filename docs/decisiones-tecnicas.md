@@ -9,6 +9,7 @@ Este documento recoge las decisiones técnicas iniciales aprobadas para Recetari
 - Inertia.js integrará Laravel y React.
 - El frontend estará dentro de `resources/js`.
 - En esta fase no se utilizará una SPA separada ni una API independiente como arquitectura principal.
+- Se utilizará Laravel 12 para mantener la compatibilidad con PHP 8.2.12, la versión local del desarrollador.
 
 ## Autenticación
 
@@ -46,7 +47,7 @@ El proyecto tendrá:
 - Lint frontend.
 - Build frontend.
 
-Vitest será el ejecutor de pruebas frontend, jsdom proporcionará el entorno DOM y React Testing Library se utilizará para probar el comportamiento de componentes y páginas React. Su instalación y configuración no forman parte de esta decisión documental y requieren una tarea de implementación autorizada expresamente.
+Vitest será el ejecutor de pruebas frontend, jsdom proporcionará el entorno DOM y React Testing Library se utilizará para probar el comportamiento de componentes y páginas React. La base inicial de estas herramientas ya está instalada y configurada.
 
 PHPUnit será el ejecutor de las pruebas backend en Laravel.
 
@@ -54,6 +55,7 @@ PHPUnit será el ejecutor de las pruebas backend en Laravel.
 
 - La aplicación se desplegará en Render.
 - El despliegue de Laravel en Render se realizará mediante Docker.
+- La imagen de despliegue utilizará Apache con la imagen oficial de PHP. La configuración inicial escucha en el puerto `10000` de Render.
 
 ## Git
 

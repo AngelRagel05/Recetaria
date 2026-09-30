@@ -1,0 +1,58 @@
+.sections {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 42rem;
+}
+
+.section {
+    padding: 1.5rem;
+    border: 1px solid #dce3d7;
+    border-radius: 0.9rem;
+    background: white;
+}
+
+.section h2 {
+    margin: 0 0 0.5rem;
+}
+
+.section p {
+    line-height: 1.5;
+}
+
+.form {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.button,
+.dangerButton,
+.secondaryButton {
+    min-height: 2.7rem;
+    padding: 0.6rem 1rem;
+    border: 0;
+    border-radius: 0.6rem;
+    background: #325c3f;
+    color: white;
+    font-weight: 700;
+}
+
+.dangerButton {
+    background: #a13d34;
+}
+
+.secondaryButton {
+    background: #e6ece3;
+    color: #263126;
+}
+
+.status {
+    color: #256d43;
+}

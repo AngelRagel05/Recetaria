@@ -1,0 +1,34 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc --noEmit && vite build",
+        "test": "vitest run",
+        "lint": "eslint resources/js vite.config.ts vitest.config.ts",
+        "format:check": "prettier --check resources/js resources/css vite.config.ts vitest.config.ts",
+        "format": "prettier --write resources/js resources/css vite.config.ts vitest.config.ts"
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.0",
+        "@inertiajs/react": "^3.0.0",
+        "@inertiajs/vite": "^3.0.0",
+        "@testing-library/dom": "^10.4.0",
+        "@testing-library/react": "^16.3.0",
+        "@types/node": "^22.16.0",
+        "@types/react": "^19.2.0",
+        "@types/react-dom": "^19.2.0",
+        "@vitejs/plugin-react": "^6.1.0",
+        "concurrently": "^9.0.1",
+        "eslint": "^10.0.0",
+        "jsdom": "^29.0.0",
+        "laravel-vite-plugin": "^3.0.0",
+        "prettier": "^3.9.0",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "typescript": "~6.0.3",
+        "typescript-eslint": "^8.71.0",
+        "vite": "^8.0.0",
+        "vitest": "^5.0.0"
+    }
+}

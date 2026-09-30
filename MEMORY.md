@@ -2,27 +2,18 @@
 
 ## Foco actual
 
-Configurar las bases iniciales del proyecto conforme a las decisiones técnicas documentadas y aprobadas. Actualmente no hay ningún trabajo de implementación autorizado ni en curso.
+Continuar desde la base inicial Laravel + React + Inertia y coordinar con el desarrollador la conexión real a los servicios externos cuando corresponda.
 
 ## Estado actual
 
-- Recetaria se encuentra en su fase inicial de configuración.
-- `AGENTS.md` y `MEMORY.md` son los primeros artefactos de gobernanza del proyecto.
-- La pila tecnológica confirmada es Laravel, React y PostgreSQL alojado en Supabase.
-- La arquitectura inicial integra Laravel y React mediante Inertia.js, con el frontend dentro de `resources/js`.
-- Laravel Breeze será la base de autenticación y Vite será la herramienta de build frontend.
-- El frontend utilizará TypeScript: `*.tsx` para componentes y páginas React y `*.ts` para código sin JSX.
-- El frontend generado por Breeze se rehacerá con CSS Modules y CSS global, conservando la lógica de autenticación necesaria y eliminando Tailwind cuando deje de utilizarse.
-- Vitest será el ejecutor de pruebas frontend, jsdom proporcionará el entorno DOM y React Testing Library se utilizará para probar componentes y páginas React.
-- PHPUnit se utilizará para las pruebas backend; ESLint para el lint frontend; Prettier para el formato; y npm para gestionar los paquetes frontend.
-- Las decisiones técnicas iniciales y sus límites están documentados en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md).
-- El repositorio está alojado en GitHub.
-- El despliegue está previsto en Render mediante Docker.
-- Los servicios externos se gestionarán mediante una cuenta de Google creada específicamente para Recetaria.
+- La base Laravel 12 + React + Inertia está instalada en la rama de trabajo `feat/initial-setup`, con frontend TypeScript en `resources/js` y autenticación Breeze adaptada a CSS Modules y CSS global, sin Tailwind.
+- PostgreSQL de Supabase está preparado mediante variables de entorno y el `Dockerfile` para Render utiliza Apache.
+- Las pruebas PHP y frontend, el lint, el formato y el build local pasan.
+- Las decisiones aprobadas y las instrucciones de puesta en marcha están en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) y [`README.md`](README.md).
 
 ## En curso
 
-No hay ningún trabajo de implementación en curso.
+No hay ningún trabajo de implementación en curso. La base preparada no se ha confirmado mediante commit ni se ha enviado al repositorio remoto.
 
 ## Alcance de esta memoria
 
@@ -45,7 +36,7 @@ Cuando deje de ser relevante:
 
 ## Decisiones pendientes
 
-Actualmente no hay decisiones pendientes identificadas que bloqueen el foco actual. Cualquier nueva decisión necesaria corresponderá al desarrollador; un agente no debe convertirla en una decisión aceptada sin aprobación explícita.
+No hay decisiones técnicas pendientes que bloqueen esta base inicial. Cualquier nueva decisión necesaria corresponderá al desarrollador; un agente no debe convertirla en una decisión aceptada sin aprobación explícita.
 
 ## Contexto relevante
 
@@ -56,7 +47,7 @@ Actualmente no hay decisiones pendientes identificadas que bloqueen el foco actu
 
 ## Problemas conocidos
 
-Actualmente no hay ningún problema conocido registrado.
+La conexión real con Supabase y la construcción de la imagen Docker siguen sin verificarse; requieren, respectivamente, credenciales de la base y un entorno con Docker.
 
 ## Deuda técnica
 
@@ -64,8 +55,8 @@ Actualmente no hay ninguna deuda técnica registrada.
 
 ## Siguientes pasos
 
-- Continuar la configuración inicial del proyecto junto con el desarrollador.
-- Configurar el proyecto conforme a las decisiones documentadas cuando el desarrollador autorice expresamente la implementación.
+- Revisar con el desarrollador la base inicial preparada.
+- Configurar las credenciales de Supabase y ejecutar las migraciones cuando estén disponibles y el desarrollador autorice ese paso.
 - Registrar únicamente las decisiones tomadas explícitamente por el desarrollador.
 
 Estos siguientes pasos describen la dirección natural del proyecto; no constituyen una autorización automática para ejecutar trabajo.

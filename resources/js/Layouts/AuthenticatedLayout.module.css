@@ -1,0 +1,46 @@
+.page {
+    min-height: 100vh;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem max(1.5rem, calc((100vw - 70rem) / 2));
+    border-bottom: 1px solid #dce3d7;
+    background: white;
+}
+
+.brand {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.navigation a,
+.navigation button {
+    border: 0;
+    background: none;
+    color: #325c3f;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.content {
+    max-width: 70rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+.greeting {
+    color: #637065;
+}

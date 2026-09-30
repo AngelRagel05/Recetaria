@@ -1,0 +1,25 @@
+.page {
+    display: grid;
+    place-content: center;
+    gap: 1.75rem;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+.brand {
+    color: #325c3f;
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+}
+
+.card {
+    width: min(100%, 28rem);
+    min-width: min(100vw - 3rem, 28rem);
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border: 1px solid #dce3d7;
+    border-radius: 1rem;
+    background: white;
+    box-shadow: 0 12px 30px #253c2610;
+}

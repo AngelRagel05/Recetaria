@@ -17,9 +17,13 @@ public_html/hot
 
 storage/*.key
 .env
+/.env.*
+!/.env.example
 Homestead.yaml
 Homestead.json
 /.vagrant
+/.phpunit.cache
+/coverage
 .phpunit.result.cache
 
 /public/build

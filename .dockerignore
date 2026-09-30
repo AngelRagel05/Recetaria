@@ -1,0 +1,11 @@
+.git
+.bootstrap
+.env
+.env.*
+node_modules
+vendor
+public/build
+public/hot
+.phpunit.cache
+coverage
+storage/logs/*

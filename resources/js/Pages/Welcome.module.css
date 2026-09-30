@@ -1,0 +1,41 @@
+.page {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.content {
+    max-width: 42rem;
+    text-align: center;
+}
+
+.eyebrow {
+    color: #467451;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.content h1 {
+    margin: 0.5rem 0 1rem;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    line-height: 1.12;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.actions a {
+    padding: 0.8rem 1.1rem;
+    border-radius: 0.6rem;
+    background: #325c3f;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+}
