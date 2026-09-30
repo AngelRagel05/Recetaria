@@ -2,18 +2,18 @@
 
 ## Foco actual
 
-Publicar, cuando el desarrollador lo solicite, la integración de seguridad inicial con GitHub Actions y verificar su primera ejecución.
+Publicar, cuando el desarrollador lo solicite, la ampliación de GitHub Actions a los pushes y pull requests de `main` y `dev`, y verificar su ejecución.
 
 ## Estado actual
 
-- La base Laravel 12 + React + Inertia está confirmada en `dev`, con frontend TypeScript en `resources/js` y autenticación Breeze adaptada a CSS Modules y CSS global, sin Tailwind.
+- La base Laravel 12 + React + Inertia está confirmada en `main` y `dev`, con frontend TypeScript en `resources/js` y autenticación Breeze adaptada a CSS Modules y CSS global, sin Tailwind.
 - Las pruebas PHP y frontend, el lint, el formato y el build local pasan.
-- El workflow de CI y auditorías de dependencias está preparado localmente, pero aún no se ha publicado ni ejecutado en GitHub.
+- El workflow de CI y auditorías de dependencias ya existe en `main` y `dev`; la ampliación de los disparadores está preparada en la rama local `feat/actions-main-dev` y pendiente de publicación.
 - Las decisiones aprobadas y las instrucciones de puesta en marcha están en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) y [`README.md`](README.md).
 
 ## En curso
 
-No hay trabajo local en curso; el workflow está pendiente de publicación y de su primera ejecución en GitHub.
+No hay trabajo local en curso; la ampliación de los disparadores está pendiente de publicación.
 
 ## Alcance de esta memoria
 
@@ -47,7 +47,7 @@ No hay decisiones técnicas pendientes que bloqueen esta base inicial. Cualquier
 
 ## Problemas conocidos
 
-La primera ejecución del workflow aún no se ha verificado en GitHub.
+La ejecución del workflow con los nuevos disparadores aún no se ha verificado en GitHub.
 
 ## Deuda técnica
 
@@ -55,7 +55,7 @@ Actualmente no hay ninguna deuda técnica registrada.
 
 ## Siguientes pasos
 
-- Publicar el workflow cuando el desarrollador lo solicite, comprobar que Actions esté habilitado en el repositorio y revisar su primera ejecución.
+- Publicar la ampliación cuando el desarrollador lo solicite y revisar una ejecución en cada rama.
 - Registrar únicamente las decisiones tomadas explícitamente por el desarrollador.
 
 Estos siguientes pasos describen la dirección natural del proyecto; no constituyen una autorización automática para ejecutar trabajo.
