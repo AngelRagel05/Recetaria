@@ -51,6 +51,8 @@ Vitest será el ejecutor de pruebas frontend, jsdom proporcionará el entorno DO
 
 PHPUnit será el ejecutor de las pruebas backend en Laravel.
 
+GitHub Actions comprobará en cada pull request las pruebas, el formato, el lint, el build y las dependencias mediante las auditorías de Composer y npm. El workflow utilizará permisos de solo lectura y no necesitará secretos del proyecto.
+
 ## Despliegue
 
 - La aplicación se desplegará en Render.

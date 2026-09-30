@@ -2,18 +2,18 @@
 
 ## Foco actual
 
-Continuar desde la base inicial Laravel + React + Inertia y coordinar con el desarrollador la conexión real a los servicios externos cuando corresponda.
+Publicar, cuando el desarrollador lo solicite, la integración de seguridad inicial con GitHub Actions y verificar su primera ejecución.
 
 ## Estado actual
 
-- La base Laravel 12 + React + Inertia está instalada en la rama de trabajo `feat/initial-setup`, con frontend TypeScript en `resources/js` y autenticación Breeze adaptada a CSS Modules y CSS global, sin Tailwind.
-- PostgreSQL de Supabase está preparado mediante variables de entorno y el `Dockerfile` para Render utiliza Apache.
+- La base Laravel 12 + React + Inertia está confirmada en `dev`, con frontend TypeScript en `resources/js` y autenticación Breeze adaptada a CSS Modules y CSS global, sin Tailwind.
 - Las pruebas PHP y frontend, el lint, el formato y el build local pasan.
+- El workflow de CI y auditorías de dependencias está preparado localmente, pero aún no se ha publicado ni ejecutado en GitHub.
 - Las decisiones aprobadas y las instrucciones de puesta en marcha están en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) y [`README.md`](README.md).
 
 ## En curso
 
-No hay ningún trabajo de implementación en curso. La base preparada no se ha confirmado mediante commit ni se ha enviado al repositorio remoto.
+No hay trabajo local en curso; el workflow está pendiente de publicación y de su primera ejecución en GitHub.
 
 ## Alcance de esta memoria
 
@@ -47,7 +47,7 @@ No hay decisiones técnicas pendientes que bloqueen esta base inicial. Cualquier
 
 ## Problemas conocidos
 
-La conexión real con Supabase y la construcción de la imagen Docker siguen sin verificarse; requieren, respectivamente, credenciales de la base y un entorno con Docker.
+La primera ejecución del workflow aún no se ha verificado en GitHub.
 
 ## Deuda técnica
 
@@ -55,8 +55,7 @@ Actualmente no hay ninguna deuda técnica registrada.
 
 ## Siguientes pasos
 
-- Revisar con el desarrollador la base inicial preparada.
-- Configurar las credenciales de Supabase y ejecutar las migraciones cuando estén disponibles y el desarrollador autorice ese paso.
+- Publicar el workflow cuando el desarrollador lo solicite, comprobar que Actions esté habilitado en el repositorio y revisar su primera ejecución.
 - Registrar únicamente las decisiones tomadas explícitamente por el desarrollador.
 
 Estos siguientes pasos describen la dirección natural del proyecto; no constituyen una autorización automática para ejecutar trabajo.

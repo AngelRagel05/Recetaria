@@ -27,6 +27,8 @@ No se deben subir credenciales ni archivos `.env` al repositorio. El correo usa 
 
 Las pruebas PHP usan SQLite en memoria y no necesitan credenciales de Supabase. Las pruebas frontend usan Vitest, jsdom y React Testing Library. El formato puede aplicarse con `npm run format`.
 
+El workflow de GitHub Actions en `.github/workflows/ci.yml` ejecuta estas comprobaciones y las auditorías de dependencias de Composer y npm en cada pull request. No utiliza credenciales de Supabase ni de Render y solo solicita permiso de lectura del repositorio. Para que se ejecute en GitHub, el archivo debe estar publicado en el repositorio y Actions debe estar habilitado en su configuración.
+
 ## Despliegue previsto en Render
 
 El `Dockerfile` construye las dependencias PHP y los recursos frontend y sirve Laravel con Apache en el puerto `10000`. Se debe crear un servicio web de Render basado en Docker, establecer las variables de entorno de producción (`APP_ENV=production`, `APP_DEBUG=false`, `APP_URL`, `ASSET_URL`, `APP_KEY`, `LOG_CHANNEL=stderr` y las variables `DB_*` de Supabase) y ejecutar las migraciones antes de utilizar las rutas que dependen de la base de datos. `APP_URL` y `ASSET_URL` deben usar la URL HTTPS pública del servicio para evitar recursos mixtos. Las credenciales se configuran en Render, nunca en la imagen ni en Git.
