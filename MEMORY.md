@@ -2,19 +2,21 @@
 
 ## Foco actual
 
-Publicar y validar en una sesión nueva de Codex el sistema SDD implantado localmente.
+Confirmar la ejecución de los tres revisores personalizados del sistema SDD.
 
 ## Estado actual
 
 - La base Laravel 12 + React + Inertia está confirmada en `main` y `dev`, con frontend TypeScript en `resources/js` y autenticación Breeze adaptada a CSS Modules y CSS global, sin Tailwind.
-- La corrección del CI del commit `0ba1d54` está publicada en `main` y `dev`. Su ejecución remota no se ha podido verificar desde el entorno actual.
-- El sistema SDD está implementado localmente en `feat/sdd-agents`: proceso permanente, tres skills compartidas y tres agentes revisores de solo lectura.
-- Las skills se han validado con `quick_validate.py` y su descubrimiento se ha confirmado mediante la interfaz local de Codex. La configuración TOML, las simulaciones de las puertas, las pruebas, el lint, el formato y el build pasan.
+- La corrección del CI del commit `0ba1d54` está publicada en `main` y `dev`.
+- El sistema SDD está publicado en `dev` mediante el commit `0bf9823`: proceso permanente, tres skills compartidas y tres agentes revisores de solo lectura.
+- El workflow **Integración y seguridad #4** de GitHub Actions ha pasado para `0bf9823` en `dev`, incluidos pruebas, formato, lint, build y auditorías configuradas.
+- Las tres skills se han validado con `quick_validate.py`, se descubren en una sesión nueva de Codex y responden a su invocación explícita. La configuración TOML y las simulaciones de las puertas también pasan.
+- Los tres revisores están validados estructuralmente; falta confirmar su invocación real por nombre en Codex.
 - Las decisiones aprobadas están en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) y el flujo está definido en [`docs/proceso-sdd.md`](docs/proceso-sdd.md).
 
 ## En curso
 
-La implantación está completada y verificada localmente; su publicación está pendiente de autorización. Después de publicarla habrá que comprobar el CI y el descubrimiento de skills y agentes en una sesión nueva de Codex.
+La implantación, la publicación en `dev`, el CI y el descubrimiento de las skills están confirmados. Solo queda ejecutar una prueba de humo de `requirements_reviewer`, `architecture_reviewer` y `test_reviewer`.
 
 ## Alcance de esta memoria
 
@@ -37,7 +39,7 @@ Cuando deje de ser relevante:
 
 ## Decisiones pendientes
 
-No hay decisiones técnicas pendientes para publicar esta implantación. Cualquier nueva decisión necesaria corresponderá al desarrollador; un agente no debe convertirla en una decisión aceptada sin aprobación explícita.
+No hay decisiones técnicas pendientes para cerrar esta implantación. Cualquier nueva decisión necesaria corresponderá al desarrollador; un agente no debe convertirla en una decisión aceptada sin aprobación explícita.
 
 ## Contexto relevante
 
@@ -48,7 +50,7 @@ No hay decisiones técnicas pendientes para publicar esta implantación. Cualqui
 
 ## Problemas conocidos
 
-La instalación local de Codex CLI (`0.121.0`) no puede completar una sesión conversacional nueva con el catálogo de modelos actual. El descubrimiento de las skills sí se ha comprobado mediante la interfaz local; la prueba integral de sesión nueva queda pendiente en una instalación compatible.
+No hay problemas conocidos en el código ni en el CI. La ejecución por nombre de los tres revisores personalizados todavía no se ha confirmado.
 
 ## Deuda técnica
 
@@ -56,8 +58,7 @@ Actualmente no hay ninguna deuda técnica registrada.
 
 ## Siguientes pasos
 
-- Publicar la rama cuando el desarrollador lo solicite.
-- Comprobar el CI y abrir una sesión nueva de Codex compatible para confirmar el descubrimiento y la ejecución de skills y agentes.
-- Tras esas comprobaciones, retirar los pendientes de esta memoria y reflejar el resultado real.
+- Ejecutar una prueba de humo de los tres revisores personalizados sin modificar archivos.
+- Tras confirmar sus resultados y el modo de solo lectura, retirar este último pendiente de la memoria.
 
 Estos siguientes pasos describen la dirección natural del proyecto; no constituyen una autorización automática para ejecutar trabajo.
