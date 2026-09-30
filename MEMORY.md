@@ -2,18 +2,19 @@
 
 ## Foco actual
 
-Publicar, cuando el desarrollador lo solicite, la ampliación de GitHub Actions a los pushes y pull requests de `main` y `dev`, y verificar su ejecución.
+Validar en GitHub la corrección del fallo de las pruebas PHP cuando los recursos de Vite aún no están compilados.
 
 ## Estado actual
 
 - La base Laravel 12 + React + Inertia está confirmada en `main` y `dev`, con frontend TypeScript en `resources/js` y autenticación Breeze adaptada a CSS Modules y CSS global, sin Tailwind.
 - Las pruebas PHP y frontend, el lint, el formato y el build local pasan.
-- El workflow de CI y auditorías de dependencias ya existe en `main` y `dev`; la ampliación de los disparadores está preparada en la rama local `feat/actions-main-dev` y pendiente de publicación.
+- El workflow de CI y auditorías de dependencias existe en `main` y `dev`; la ampliación de sus disparadores está publicada en `dev` y todavía no en `main`.
+- La corrección de las pruebas PHP está preparada en la rama local `fix/ci-vite-manifest`. Las 25 pruebas pasan incluso sin `public/build/manifest.json`, pero falta verificar esta corrección en GitHub.
 - Las decisiones aprobadas y las instrucciones de puesta en marcha están en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) y [`README.md`](README.md).
 
 ## En curso
 
-No hay trabajo local en curso; la ampliación de los disparadores está pendiente de publicación.
+No hay trabajo local en curso; la corrección está pendiente de publicación y de una nueva ejecución del CI.
 
 ## Alcance de esta memoria
 
@@ -47,7 +48,7 @@ No hay decisiones técnicas pendientes que bloqueen esta base inicial. Cualquier
 
 ## Problemas conocidos
 
-La ejecución del workflow con los nuevos disparadores aún no se ha verificado en GitHub.
+El CI de `dev` ha fallado porque las pruebas PHP requerían un manifiesto de Vite que aún no existía en el runner. La corrección local está validada, pero aún no se ha comprobado en GitHub.
 
 ## Deuda técnica
 
@@ -55,7 +56,7 @@ Actualmente no hay ninguna deuda técnica registrada.
 
 ## Siguientes pasos
 
-- Publicar la ampliación cuando el desarrollador lo solicite y revisar una ejecución en cada rama.
+- Publicar la corrección cuando el desarrollador lo solicite y comprobar que el CI de `dev` pase.
 - Registrar únicamente las decisiones tomadas explícitamente por el desarrollador.
 
 Estos siguientes pasos describen la dirección natural del proyecto; no constituyen una autorización automática para ejecutar trabajo.

@@ -25,7 +25,7 @@ No se deben subir credenciales ni archivos `.env` al repositorio. El correo usa 
 - Backend: `php artisan test`.
 - Frontend: `npm test`, `npm run lint`, `npm run format:check` y `npm run build`.
 
-Las pruebas PHP usan SQLite en memoria y no necesitan credenciales de Supabase. Las pruebas frontend usan Vitest, jsdom y React Testing Library. El formato puede aplicarse con `npm run format`.
+Las pruebas PHP usan SQLite en memoria y simulan la integración de Vite, por lo que no necesitan credenciales de Supabase ni recursos frontend compilados. Las pruebas frontend usan Vitest, jsdom y React Testing Library; `npm run build` verifica la compilación por separado. El formato puede aplicarse con `npm run format`.
 
 El workflow de GitHub Actions en `.github/workflows/ci.yml` ejecuta estas comprobaciones y las auditorías de dependencias de Composer y npm en los pushes a `main` y `dev`, y en los pull requests dirigidos a cualquiera de esas ramas. No utiliza credenciales de Supabase ni de Render y solo solicita permiso de lectura del repositorio. Para que se ejecute en GitHub, el archivo debe estar publicado en la rama correspondiente y Actions debe estar habilitado en su configuración.
 
