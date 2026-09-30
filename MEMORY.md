@@ -2,17 +2,23 @@
 
 ## Foco actual
 
-Establecer las bases iniciales del proyecto y tomar las primeras decisiones técnicas junto con el desarrollador. Actualmente no hay ningún trabajo de implementación autorizado ni en curso.
+Configurar las bases iniciales del proyecto conforme a las decisiones técnicas documentadas y aprobadas. Actualmente no hay ningún trabajo de implementación autorizado ni en curso.
 
 ## Estado actual
 
 - Recetaria se encuentra en su fase inicial de configuración.
 - `AGENTS.md` y `MEMORY.md` son los primeros artefactos de gobernanza del proyecto.
 - La pila tecnológica confirmada es Laravel, React y PostgreSQL alojado en Supabase.
+- La arquitectura inicial integra Laravel y React mediante Inertia.js, con el frontend dentro de `resources/js`.
+- Laravel Breeze será la base de autenticación y Vite será la herramienta de build frontend.
+- El frontend utilizará TypeScript: `*.tsx` para componentes y páginas React y `*.ts` para código sin JSX.
+- El frontend generado por Breeze se rehacerá con CSS Modules y CSS global, conservando la lógica de autenticación necesaria y eliminando Tailwind cuando deje de utilizarse.
+- Vitest será el ejecutor de pruebas frontend, jsdom proporcionará el entorno DOM y React Testing Library se utilizará para probar componentes y páginas React.
+- PHPUnit se utilizará para las pruebas backend; ESLint para el lint frontend; Prettier para el formato; y npm para gestionar los paquetes frontend.
+- Las decisiones técnicas iniciales y sus límites están documentados en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md).
 - El repositorio está alojado en GitHub.
-- El despliegue está previsto en Render.
+- El despliegue está previsto en Render mediante Docker.
 - Los servicios externos se gestionarán mediante una cuenta de Google creada específicamente para Recetaria.
-- No se ha seleccionado ninguna arquitectura concreta de Laravel y React.
 
 ## En curso
 
@@ -39,10 +45,7 @@ Cuando deje de ser relevante:
 
 ## Decisiones pendientes
 
-- La arquitectura concreta de Laravel y React necesaria para inicializar el proyecto.
-- Las decisiones de configuración inicial que resulten necesarias para dejar una base funcional mínima.
-
-Estas decisiones corresponden al desarrollador. Un agente no debe convertirlas en decisiones aceptadas sin aprobación explícita.
+Actualmente no hay decisiones pendientes identificadas que bloqueen el foco actual. Cualquier nueva decisión necesaria corresponderá al desarrollador; un agente no debe convertirla en una decisión aceptada sin aprobación explícita.
 
 ## Contexto relevante
 
@@ -62,7 +65,7 @@ Actualmente no hay ninguna deuda técnica registrada.
 ## Siguientes pasos
 
 - Continuar la configuración inicial del proyecto junto con el desarrollador.
-- Identificar y debatir las decisiones técnicas necesarias para inicializar correctamente el proyecto.
+- Configurar el proyecto conforme a las decisiones documentadas cuando el desarrollador autorice expresamente la implementación.
 - Registrar únicamente las decisiones tomadas explícitamente por el desarrollador.
 
 Estos siguientes pasos describen la dirección natural del proyecto; no constituyen una autorización automática para ejecutar trabajo.

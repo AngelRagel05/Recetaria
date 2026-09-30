@@ -8,12 +8,25 @@ El contexto tecnológico y de servicios confirmado es el siguiente:
 
 - Backend: Laravel.
 - Frontend: React.
+- Integración entre backend y frontend: Inertia.js.
+- Ubicación del frontend: `resources/js` dentro del proyecto Laravel.
 - Base de datos: PostgreSQL alojado en Supabase.
 - Repositorio del código fuente: GitHub.
 - Plataforma de despliegue: Render.
+- Método de despliegue en Render: Docker.
 - Los servicios externos se gestionarán mediante una cuenta de Google creada específicamente para Recetaria.
+- Base de autenticación: Laravel Breeze dentro de la arquitectura Laravel, Inertia y React.
+- Herramienta de build frontend: Vite.
+- Lenguaje del frontend: TypeScript, con archivos `*.tsx` para componentes y páginas React y `*.ts` para código sin JSX.
+- Gestor de paquetes frontend: npm.
+- Ejecutor de pruebas frontend: Vitest.
+- Entorno DOM para las pruebas frontend: jsdom.
+- Pruebas de componentes y páginas React: React Testing Library.
+- Ejecutor de pruebas backend: PHPUnit.
+- Lint frontend: ESLint.
+- Formato frontend: Prettier.
 
-La arquitectura concreta de Laravel y React no ha sido seleccionada. No se debe inferir una arquitectura a partir del contenido actual del repositorio ni de la pila tecnológica confirmada.
+La arquitectura inicial confirmada integra Laravel y React mediante Inertia.js. En esta fase no se utilizará una SPA separada ni una API independiente como arquitectura principal. Las decisiones técnicas iniciales y sus límites están recogidos en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md).
 
 ## 2. Rol de los agentes
 
@@ -91,18 +104,21 @@ No se debe tratar un elemento pendiente de `MEMORY.md`, un siguiente paso sugeri
 
 ## 6. Flujo de trabajo obligatorio después de la implementación
 
-Cuando sea aplicable y el repositorio lo permita, un agente debe:
+Una tarea no debe considerarse terminada hasta que, cuando corresponda y el repositorio lo permita:
 
-- Ejecutar las pruebas relevantes.
-- Ejecutar los formateadores y linters configurados.
-- Ejecutar el análisis estático configurado.
-- Confirmar que el proyecto se compila correctamente.
-- Revisar el diff completo.
-- Detectar cambios accidentales o fuera del alcance.
-- Evaluar si el cambio ha introducido deuda técnica relevante.
-- Informar brevemente de las decisiones de implementación no triviales tomadas dentro del margen autorizado y explicar su motivo cuando resulte útil para comprender o revisar el resultado.
-- Actualizar la documentación afectada.
-- Actualizar `MEMORY.md` para reflejar el estado operativo actual.
+- La implementación debe estar completa dentro del alcance aprobado.
+- Las pruebas relevantes deben estar implementadas o actualizadas.
+- Las pruebas relevantes deben pasar.
+- Los formateadores y linters configurados deben pasar.
+- El análisis estático configurado debe pasar.
+- El build debe pasar.
+- El diff completo debe haberse revisado para detectar cambios accidentales o fuera del alcance.
+- Debe evaluarse si el cambio ha introducido deuda técnica relevante.
+- Se debe informar brevemente de las decisiones de implementación no triviales tomadas dentro del margen autorizado y explicar su motivo cuando resulte útil para comprender o revisar el resultado.
+- La documentación necesaria debe estar actualizada.
+- `MEMORY.md` debe reflejar el estado operativo actual.
+
+No se debe marcar una tarea como completada si alguno de estos puntos aplicables sigue pendiente.
 
 Este informe puede incluir, por ejemplo, la elección de una estructura ya utilizada en el proyecto, la reutilización de una abstracción existente, la aplicación de una convención establecida o la colocación de una lógica en una capa concreta conforme a una decisión ya existente. No debe convertirse en una explicación línea por línea ni añadir ruido innecesario. No es necesario informar sobre decisiones triviales como importaciones, formato, nombres locales evidentes o ajustes automáticos del formateador. El objetivo es que el desarrollador pueda comprender y defender las decisiones relevantes del código generado o modificado por el agente.
 
@@ -125,9 +141,11 @@ Estos principios no justifican la sobreingeniería. Se debe evitar:
 
 Toda abstracción significativa debe resolver un problema real y actual. Se debe preferir la solución mantenible más sencilla que cumpla el requisito aprobado y respete las decisiones establecidas del proyecto.
 
+Los estilos específicos de componentes o páginas deben utilizar CSS Modules mediante archivos `*.module.css`, y los estilos globales deben utilizar archivos CSS globales. No se utilizará Bootstrap. El frontend generado por Laravel Breeze debe rehacerse con estas mismas convenciones, conservando las rutas y la lógica de autenticación necesarias, pero no sus estilos basados en Tailwind CSS. Tailwind debe eliminarse cuando deje de tener referencias en el proyecto.
+
 ## 8. Pruebas y calidad
 
-No se presupone ninguna estrategia ni herramienta de pruebas específica hasta que el desarrollador seleccione una.
+El proyecto tendrá pruebas backend en Laravel con PHPUnit, pruebas frontend con Vitest, jsdom y React Testing Library, lint frontend con ESLint, formato frontend con Prettier y build frontend con Vite.
 
 - Los cambios de comportamiento deben incluir pruebas cuando sea razonable y existan herramientas adecuadas en el proyecto.
 - Los errores deben reproducirse mediante una prueba cuando sea posible.
@@ -135,7 +153,7 @@ No se presupone ninguna estrategia ni herramienta de pruebas específica hasta q
 - Las pruebas deben verificar el comportamiento observable en lugar de detalles de implementación innecesarios.
 - La verificación debe ser proporcional al riesgo y al alcance del cambio.
 
-Si el repositorio todavía no proporciona herramientas de pruebas, linting, formato, análisis estático o compilación, no se debe presuponer ni instalar ninguna sin aprobación.
+Los comandos concretos de build y lint frontend deben tomarse del `package.json` real una vez exista. No se deben inventar scripts que todavía no estén definidos. Si el repositorio todavía no proporciona otras herramientas de pruebas, linting, formato, análisis estático o compilación, no se debe presuponer ni instalar ninguna sin aprobación.
 
 ## 9. Seguridad
 
@@ -177,12 +195,20 @@ Estas prácticas forman parte de una implementación correcta y segura dentro de
 
 ## 10. Git
 
+La estrategia de ramas aprobada es:
+
+- `main` es la rama estable y desplegada.
+- `dev` es la rama principal de integración para desarrollo.
+- Las ramas de trabajo nacen desde `dev` y vuelven a `dev`.
+
+Las ramas de trabajo utilizarán prefijos según el tipo de cambio, incluidos al menos `feat/`, `fix/`, `refactor/` y `docs/`. No se debe inventar una lista exhaustiva de prefijos mientras no resulte necesaria.
+
 - Los cambios deben ser coherentes y limitarse al alcance aprobado.
 - No se debe modificar código ni documentación no relacionados sin una razón clara.
 - Se debe preservar el trabajo existente y revisar el diff antes de informar de la finalización.
 - No se deben crear commits automáticamente salvo que el desarrollador lo solicite explícitamente.
 - No se debe hacer push automáticamente salvo que el desarrollador lo solicite explícitamente.
-- No se deben inventar convenciones para los nombres de las ramas ni para los mensajes de commit antes de que el desarrollador las decida.
+- No se deben ampliar las convenciones para los nombres de las ramas ni inventar convenciones para los mensajes de commit antes de que el desarrollador las decida.
 - No se debe reescribir el historial ni utilizar operaciones destructivas de Git sin autorización explícita.
 
 ## 11. Documentación y memoria del proyecto
@@ -191,7 +217,8 @@ El conocimiento del proyecto debe estar en el lugar adecuado:
 
 - `AGENTS.md` contiene las reglas estables de gobernanza para los agentes.
 - `MEMORY.md` contiene el contexto operativo actual, conciso y necesario para continuar el trabajo correctamente.
-- La documentación futura dentro de `docs/` contendrá el conocimiento técnico o de producto duradero cuando dicha documentación esté justificada.
+- La documentación dentro de `docs/` contiene el conocimiento técnico o de producto duradero cuando dicha documentación está justificada.
+- [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) contiene las decisiones técnicas iniciales aprobadas y sus límites.
 - Los futuros registros de decisiones de arquitectura (ADR) recogerán las decisiones técnicas importantes cuando se adopte explícitamente esa práctica.
 - Git contiene el historial de cambios.
 - Las pruebas describen el comportamiento verificable.
