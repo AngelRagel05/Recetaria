@@ -17,7 +17,14 @@ Este documento recoge las decisiones técnicas iniciales aprobadas para Recetari
 - Se conservarán las rutas y la lógica backend de autenticación proporcionadas por Breeze.
 - Se reutilizará el comportamiento frontend necesario para los formularios de autenticación, como el envío mediante Inertia, los errores de validación y los estados de procesamiento.
 - Las páginas, layouts y componentes visuales generados por Breeze se reharán con TypeScript, CSS Modules y CSS global.
-- No se deben asumir funcionalidades adicionales todavía no decididas, como login con Google, OAuth adicional, verificación de email, autenticación multifactor, permisos avanzados o roles.
+- El modelo conceptual distingue los roles `member` y `admin` mediante una relación 1:N entre `roles` y `users`; cada usuario tendrá exactamente un rol y `member` será el predeterminado.
+- El alcance conceptual del administrador y sus protecciones están definidos en el [`modelo relacional inicial`](modelo-relacional.md). La implementación de autorización, asignación de roles y creación del primer administrador permanece pendiente de una especificación propia.
+- No se deben asumir otras funcionalidades adicionales todavía no decididas, como login con Google, OAuth adicional, verificación de email, autenticación multifactor o permisos más granulares.
+
+## Modelo de datos
+
+- El [`modelo relacional inicial`](modelo-relacional.md) documenta las 21 tablas de dominio y sus relaciones aprobadas.
+- El modelo es conceptual y no autoriza todavía atributos, restricciones SQL, migraciones ni cambios en PostgreSQL.
 
 ## Frontend y herramientas de build
 

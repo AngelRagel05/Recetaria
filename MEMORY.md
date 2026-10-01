@@ -2,7 +2,7 @@
 
 ## Foco actual
 
-Confirmar la ejecución de los tres revisores personalizados del sistema SDD.
+Publicar y comprobar en CI el modelo relacional inicial de Recetaria.
 
 ## Estado actual
 
@@ -11,12 +11,14 @@ Confirmar la ejecución de los tres revisores personalizados del sistema SDD.
 - El sistema SDD está publicado en `dev` mediante el commit `0bf9823`: proceso permanente, tres skills compartidas y tres agentes revisores de solo lectura.
 - El workflow **Integración y seguridad #4** de GitHub Actions ha pasado para `0bf9823` en `dev`, incluidos pruebas, formato, lint, build y auditorías configuradas.
 - Las tres skills se han validado con `quick_validate.py`, se descubren en una sesión nueva de Codex y responden a su invocación explícita. La configuración TOML y las simulaciones de las puertas también pasan.
-- Los tres revisores están validados estructuralmente; falta confirmar su invocación real por nombre en Codex.
+- `requirements_reviewer`, `architecture_reviewer` y `test_reviewer` se han ejecutado por nombre sobre la especificación `001`; sus revisiones finales devolvieron `PASS`.
+- El modelo relacional inicial está implementado y verificado localmente en `docs/modelo-relacional-inicial`: contiene 21 tablas de dominio, 28 relaciones Mermaid, los roles iniciales `member` y `admin` con `member` como predeterminado, y ninguna migración ni cambio en PostgreSQL.
+- Pint, las 25 pruebas PHP, ESLint, Prettier, Vitest, el build y las comprobaciones documentales pasan.
 - Las decisiones aprobadas están en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) y el flujo está definido en [`docs/proceso-sdd.md`](docs/proceso-sdd.md).
 
 ## En curso
 
-La implantación, la publicación en `dev`, el CI y el descubrimiento de las skills están confirmados. Solo queda ejecutar una prueba de humo de `requirements_reviewer`, `architecture_reviewer` y `test_reviewer`.
+La implementación y la verificación local del modelo están completas. Quedan pendientes únicamente el commit, la publicación autorizada y la comprobación del CI.
 
 ## Alcance de esta memoria
 
@@ -39,7 +41,7 @@ Cuando deje de ser relevante:
 
 ## Decisiones pendientes
 
-No hay decisiones técnicas pendientes para cerrar esta implantación. Cualquier nueva decisión necesaria corresponderá al desarrollador; un agente no debe convertirla en una decisión aceptada sin aprobación explícita.
+No hay decisiones técnicas pendientes para cerrar el modelo conceptual. Los atributos, restricciones SQL, políticas de borrado, migraciones y autorización requerirán especificaciones posteriores.
 
 ## Contexto relevante
 
@@ -50,7 +52,7 @@ No hay decisiones técnicas pendientes para cerrar esta implantación. Cualquier
 
 ## Problemas conocidos
 
-No hay problemas conocidos en el código ni en el CI. La ejecución por nombre de los tres revisores personalizados todavía no se ha confirmado.
+No hay problemas conocidos en la implementación local. El CI de este cambio no puede comprobarse hasta que exista una publicación autorizada.
 
 ## Deuda técnica
 
@@ -58,7 +60,7 @@ Actualmente no hay ninguna deuda técnica registrada.
 
 ## Siguientes pasos
 
-- Ejecutar una prueba de humo de los tres revisores personalizados sin modificar archivos.
-- Tras confirmar sus resultados y el modo de solo lectura, retirar este último pendiente de la memoria.
+- Crear el commit y publicar la rama solo cuando el desarrollador lo solicite.
+- Comprobar el CI publicado y cerrar la memoria en una segunda actualización documental.
 
 Estos siguientes pasos describen la dirección natural del proyecto; no constituyen una autorización automática para ejecutar trabajo.
