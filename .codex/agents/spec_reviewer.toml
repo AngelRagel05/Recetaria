@@ -1,5 +1,5 @@
-name = "requirements_reviewer"
-description = "Revisor de solo lectura para detectar ambigüedades, decisiones pendientes y criterios de aceptación insuficientes en especificaciones SDD de Recetaria."
+name = "spec_reviewer"
+description = "Revisor de especificaciones en modo de solo lectura para detectar ambigüedades, decisiones pendientes y criterios de aceptación insuficientes en el proceso SDD de Recetaria."
 sandbox_mode = "read-only"
 developer_instructions = """
 Revisa únicamente la especificación SDD que te proporcione el agente principal.

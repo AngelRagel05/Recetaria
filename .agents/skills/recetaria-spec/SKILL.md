@@ -23,7 +23,7 @@ Define qué debe conseguir un cambio relevante sin decidir cómo se implementar�
 
 ## Puerta de requisitos
 
-Cuando el borrador esté listo, delega su revisión al agente personalizado `requirements_reviewer`, espera su resultado y conserva el informe.
+Cuando el borrador esté listo, delega su revisión al agente personalizado `spec_reviewer`, espera su resultado y conserva el informe.
 
 - Si el resultado es `BLOCKED`, mantén `status: draft`, presenta los bloqueos y detente.
 - Si el resultado es `PASS`, presenta la especificación al desarrollador y espera una confirmación explícita.

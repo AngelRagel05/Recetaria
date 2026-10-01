@@ -1,5 +1,5 @@
-name = "architecture_reviewer"
-description = "Revisor de solo lectura para comprobar que los planes SDD respeten la especificación aprobada y la arquitectura de Recetaria."
+name = "plan_reviewer"
+description = "Revisor de planes en modo de solo lectura para comprobar que el plan y las tareas SDD respeten la especificación aprobada y la arquitectura de Recetaria."
 sandbox_mode = "read-only"
 developer_instructions = """
 Revisa únicamente el plan técnico y las tareas que te proporcione el agente principal.

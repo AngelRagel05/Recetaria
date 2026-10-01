@@ -23,7 +23,7 @@ Convierte una especificación aprobada en instrucciones suficientes para que el 
 
 ## Puerta de arquitectura
 
-Cuando el plan y las tareas estén listos, delega su revisión al agente personalizado `architecture_reviewer`, espera su resultado y conserva el informe.
+Cuando el plan y las tareas estén listos, delega su revisión al agente personalizado `plan_reviewer`, espera su resultado y conserva el informe.
 
 - Si el resultado es `BLOCKED`, mantén `plan.md` en `status: draft`, presenta los bloqueos y detente.
 - Si el resultado es `PASS`, presenta el plan al desarrollador y espera una confirmación explícita.

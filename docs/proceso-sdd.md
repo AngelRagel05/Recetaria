@@ -81,7 +81,7 @@ Los estados válidos son `pending`, `in_progress` y `completed`. Este archivo si
 ### 1. Especificación
 
 1. `$recetaria-spec` crea o revisa la especificación en estado `draft`.
-2. `requirements_reviewer` la revisa en modo de solo lectura.
+2. `spec_reviewer` la revisa en modo de solo lectura.
 3. Un resultado `BLOCKED` mantiene el estado `draft`.
 4. Un resultado `PASS` permite solicitar la aprobación del desarrollador.
 5. El estado cambia a `approved` únicamente después de una confirmación explícita del desarrollador.
@@ -90,7 +90,7 @@ Los estados válidos son `pending`, `in_progress` y `completed`. Este archivo si
 
 1. `$recetaria-plan` comprueba que `spec.md` tenga estado `approved`.
 2. Crea o revisa `plan.md` y `tasks.md` sin implementar código.
-3. `architecture_reviewer` revisa ambos documentos en modo de solo lectura.
+3. `plan_reviewer` revisa ambos documentos en modo de solo lectura.
 4. Un resultado `BLOCKED` impide aprobar el plan.
 5. `plan.md` cambia a `approved` únicamente después de una confirmación explícita del desarrollador.
 
