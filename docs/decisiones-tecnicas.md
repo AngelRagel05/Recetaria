@@ -18,13 +18,15 @@ Este documento recoge las decisiones técnicas iniciales aprobadas para Recetari
 - Se reutilizará el comportamiento frontend necesario para los formularios de autenticación, como el envío mediante Inertia, los errores de validación y los estados de procesamiento.
 - Las páginas, layouts y componentes visuales generados por Breeze se reharán con TypeScript, CSS Modules y CSS global.
 - El modelo conceptual distingue los roles `member` y `admin` mediante una relación 1:N entre `roles` y `users`; cada usuario tendrá exactamente un rol y `member` será el predeterminado.
-- El alcance conceptual del administrador y sus protecciones están definidos en el [`modelo relacional inicial`](modelo-relacional.md). La implementación de autorización, asignación de roles y creación del primer administrador permanece pendiente de una especificación propia.
+- Las capacidades de los roles, la autorización, la asignación de roles y la creación del primer administrador permanecen pendientes de una especificación propia.
 - No se deben asumir otras funcionalidades adicionales todavía no decididas, como login con Google, OAuth adicional, verificación de email, autenticación multifactor o permisos más granulares.
 
 ## Modelo de datos
 
-- El [`modelo relacional inicial`](modelo-relacional.md) documenta las 21 tablas de dominio y sus relaciones aprobadas.
-- El modelo es conceptual y no autoriza todavía atributos, restricciones SQL, migraciones ni cambios en PostgreSQL.
+- El [`modelo relacional`](modelo-relacional.md) es la vista visual vigente para localizar las 20 tablas de dominio, sus relaciones y sus cardinalidades.
+- [`Atributos del modelo relacional`](atributos-modelo-relacional.md) es la referencia detallada vigente para consultar atributos, claves, índices, restricciones conceptuales y el funcionamiento de cada relación.
+- Ambas vistas son complementarias y deben representar el mismo modelo: las recetas se publican de forma independiente y las imágenes de publicaciones pueden enlazar opcionalmente recetas publicadas.
+- El modelo sigue siendo conceptual. Estos documentos no crean ni autorizan migraciones, cambios en PostgreSQL, políticas de borrado, migraciones de datos ni mecanismos ejecutables para las reglas entre tablas.
 
 ## Frontend y herramientas de build
 
