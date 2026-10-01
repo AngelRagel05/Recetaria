@@ -1,10 +1,10 @@
-# Modelo relacional inicial de Recetaria
+# Modelo relacional de Recetaria
 
 ## Propósito y alcance
 
-Este documento representa el modelo relacional conceptual aprobado para el dominio inicial de Recetaria. Solo muestra tablas, relaciones y cardinalidades; no define atributos, claves, índices, restricciones SQL, migraciones ni políticas de borrado.
+Este documento es la vista visual vigente del modelo relacional de Recetaria. Permite localizar rápidamente sus 20 tablas de dominio, relaciones y cardinalidades.
 
-Las tablas técnicas de Laravel, como sesiones, caché o trabajos, no forman parte de este diagrama de dominio.
+Los atributos, claves, índices, restricciones y reglas funcionales de cada relación se detallan en [Atributos del modelo relacional](atributos-modelo-relacional.md). Las tablas técnicas de Laravel, como sesiones, caché o trabajos, no forman parte de este modelo de dominio.
 
 ## Diagrama
 
@@ -28,12 +28,8 @@ erDiagram
     tags ||--o{ recipe_tags : agrupa
 
     users ||--o{ publications : publica
-    recipes ||--o{ publications : es_principal
-
-    publications ||--o{ publication_recipe_mentions : menciona
-    recipes ||--o{ publication_recipe_mentions : es_mencionada
-
     publications ||--|{ publication_images : incluye
+    recipes o|--o{ publication_images : enlaza
 
     users ||--o{ comments : escribe
     publications ||--o{ comments : recibe
@@ -58,43 +54,44 @@ erDiagram
 - Usuarios y roles: `roles`, `users`.
 - Núcleo culinario: `recipes`, `recipe_authors`, `ingredients`, `units`, `recipe_ingredients`, `recipe_steps`.
 - Clasificación: `categories`, `recipe_categories`, `tags`, `recipe_tags`.
-- Capa social: `publications`, `publication_recipe_mentions`, `publication_images`, `comments`, `publication_likes`, `saved_recipes`, `collections`, `collection_recipes`, `user_follows`.
+- Capa social: `publications`, `publication_images`, `comments`, `publication_likes`, `saved_recipes`, `collections`, `collection_recipes`, `user_follows`.
 
-El modelo contiene exactamente 21 tablas de dominio.
+El modelo contiene exactamente 20 tablas de dominio.
 
 ## Reglas complementarias
 
-### Usuarios y administración
+### Usuarios y roles
 
-- Cada usuario tiene exactamente un rol. Los roles iniciales son `member` y `admin`, y `member` es el predeterminado.
-- El administrador puede gestionar usuarios, asignarles roles, gestionar cualquier colección, moderar contenido, administrar categorías, etiquetas, ingredientes y unidades, y consultar contenido no público.
-- El administrador no puede acceder a credenciales, suplantar sesiones ni eliminar o degradar al último administrador.
-- La implementación de estas reglas, incluida la creación del primer administrador, se definirá en otra especificación.
+- Cada usuario tiene exactamente un rol. El catálogo es extensible y contiene inicialmente `member` y `admin`.
+- Todo registro público de usuario recibe el rol `member` sin depender de un identificador numérico codificado.
+- Las capacidades de los roles y las reglas de autorización se definirán en otra especificación.
 
 ### Recetas
 
-- Cada receta tiene uno o más coautores equivalentes.
-- Una receta en borrador puede no tener ingredientes o pasos, pero para ser principal en una publicación debe tener al menos un ingrediente y un paso.
-- Las categorías y etiquetas son opcionales, globales y planas.
-- Cada par receta-autor, receta-ingrediente, receta-categoría y receta-etiqueta debe evitar duplicados cuando se definan sus restricciones.
-- La unidad de un ingrediente dentro de una receta es opcional.
+- Cada receta conserva uno o más coautores equivalentes y aparece en el perfil público de todos ellos cuando está publicada.
+- Una receta puede permanecer como borrador privado. Para publicarla debe contener al menos un ingrediente y un paso, y no puede quedar incompleta mientras siga publicada.
+- Despublicar una receta conserva sus referencias, guardados y pertenencias a colecciones, pero los oculta de la vista pública. Al republicarla vuelven a mostrarse.
+- Las categorías y etiquetas son opcionales, globales y planas. La unidad de un ingrediente dentro de una receta también es opcional.
 
 ### Publicaciones e interacción
 
-- Cada publicación tiene exactamente un publicador y una receta principal, que puede ser propia o ajena.
-- Cada publicación tiene una o más imágenes. Las recetas no poseen imágenes en este modelo.
-- Una publicación puede mencionar otras recetas, pero no puede repetir como mención su receta principal.
-- No existe ninguna relación entre publicaciones: republicar significa crear una publicación nueva cuya receta principal puede pertenecer a otros autores.
-- Los likes pertenecen únicamente a publicaciones y cada par usuario-publicación es único.
-- Los comentarios pertenecen a una publicación y admiten respuestas con anidamiento ilimitado. Una respuesta debe pertenecer a la misma publicación que su comentario padre.
+- Cada publicación pertenece a un usuario y contiene entre una y diez imágenes; la imagen en la posición `1` es la portada.
+- Cada imagen puede enlazar, como máximo, una receta publicada. Varias imágenes pueden enlazar la misma receta y una publicación puede no enlazar ninguna.
+- Si una receta enlazada vuelve a borrador, la referencia se conserva pero el enlace y sus metadatos se ocultan; reaparecen al republicarla.
+- Las publicaciones y las recetas tienen ciclos de vida independientes y no conservan versiones históricas entre sí.
+- Los likes pertenecen a publicaciones y no admiten tipos de reacción.
+- Los comentarios pertenecen a una publicación, permiten respuestas con anidamiento ilimitado y exigen que padre e hijo pertenezcan a la misma publicación.
 
 ### Guardados, colecciones y seguimiento
 
-- Los guardados pertenecen únicamente a recetas y cada par usuario-receta es único.
-- Cada colección pertenece a un único usuario y cada par colección-receta es único.
-- Añadir una receta a una colección exige o crea el guardado correspondiente para el propietario de la colección.
+- Los guardados pertenecen a recetas y cada par usuario-receta es único.
+- Cada colección es privada, pertenece a un usuario y no puede contener dos veces la misma receta.
+- Añadir una receta a una colección exige o crea su guardado para el propietario. Si la receta vuelve a borrador, ambos registros se conservan pero se ocultan públicamente.
+- El orden de una colección se deriva de la fecha de incorporación y utiliza el identificador como desempate estable.
 - El seguimiento entre usuarios es dirigido, cada par seguidor-seguido es único y un usuario no puede seguirse a sí mismo.
 
 ## Decisiones aplazadas
 
-Antes de crear migraciones deberán definirse los atributos, las claves, las restricciones SQL, las políticas de borrado y la migración de usuarios existentes. La autorización requerirá además una especificación propia para los permisos, la auditoría, la suspensión, la visibilidad y la protección técnica del último administrador.
+Este documento no define políticas de borrado, migración de datos existentes, autorización o moderación, contrato del primer administrador, integración técnica con Cloudinary ni mecanismos ejecutables para las reglas que afectan a varias filas o tablas.
+
+Consulta [Atributos del modelo relacional](atributos-modelo-relacional.md) para conocer el contrato detallado y el funcionamiento de cada relación.

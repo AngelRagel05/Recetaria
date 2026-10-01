@@ -2,7 +2,7 @@
 
 ## Foco actual
 
-No hay una tarea activa. El modelo relacional inicial está integrado y verificado en `dev`.
+La implementación documental local de la especificación `002` está completada y verificada. Su publicación y el CI externo permanecen pendientes.
 
 ## Estado actual
 
@@ -10,14 +10,15 @@ No hay una tarea activa. El modelo relacional inicial está integrado y verifica
 - El sistema SDD está publicado en `dev` mediante el commit `0bf9823`: proceso permanente, tres skills compartidas y tres agentes revisores de solo lectura.
 - Las tres skills se han validado con `quick_validate.py`, se descubren en una sesión nueva de Codex y responden a su invocación explícita. La configuración TOML y las simulaciones de las puertas también pasan.
 - `requirements_reviewer`, `architecture_reviewer` y `test_reviewer` se han ejecutado por nombre sobre la especificación `001`; sus revisiones finales devolvieron `PASS`.
-- El modelo relacional inicial está integrado en `dev` mediante el commit `ea866a8`: contiene 21 tablas de dominio, 28 relaciones Mermaid, los roles iniciales `member` y `admin` con `member` como predeterminado, y ninguna migración ni cambio en PostgreSQL.
+- [`docs/modelo-relacional.md`](docs/modelo-relacional.md) representa visualmente las 20 tablas vigentes y [`docs/atributos-modelo-relacional.md`](docs/atributos-modelo-relacional.md) documenta sus atributos, restricciones conceptuales y relaciones. La implementación local no incluye código, migraciones ni cambios en PostgreSQL.
+- La especificación `002`, su plan y sus tareas están completados localmente tras obtener `PASS` de `requirements_reviewer`, `architecture_reviewer` y `test_reviewer`. Las comprobaciones documentales y `git diff --check` pasan.
 - Pint, las 25 pruebas PHP, ESLint, Prettier, Vitest, el build y las comprobaciones documentales pasan.
 - El workflow [**Integración y seguridad**](https://github.com/AngelRagel05/Recetaria/actions/runs/36794565559) ha pasado para `ea866a8` en `dev`.
 - Las decisiones aprobadas están en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) y el flujo está definido en [`docs/proceso-sdd.md`](docs/proceso-sdd.md).
 
 ## En curso
 
-No hay trabajo en curso relacionado con el modelo relacional inicial.
+No hay implementación en curso. Los cambios documentales están integrados localmente; su publicación y la comprobación del CI externo permanecen pendientes.
 
 ## Alcance de esta memoria
 
@@ -40,7 +41,7 @@ Cuando deje de ser relevante:
 
 ## Decisiones pendientes
 
-No hay decisiones técnicas pendientes para cerrar el modelo conceptual. Los atributos, restricciones SQL, políticas de borrado, migraciones y autorización requerirán especificaciones posteriores.
+La especificación `002` mantiene fuera de alcance las políticas de borrado, la migración de datos existentes, la autorización y moderación, el contrato del primer administrador y la integración técnica con Cloudinary. Estas materias requerirán decisiones y especificaciones posteriores cuando entren en el foco del proyecto.
 
 ## Contexto relevante
 
@@ -59,6 +60,7 @@ Actualmente no hay ninguna deuda técnica registrada.
 
 ## Siguientes pasos
 
-- Acordar con el desarrollador el siguiente foco antes de iniciar otra especificación o implementación.
+- Publicar los cambios documentales de la especificación `002` cuando el desarrollador lo decida.
+- Tras la publicación, comprobar el CI y actualizar esta memoria con el resultado externo real.
 
 Estos siguientes pasos describen la dirección natural del proyecto; no constituyen una autorización automática para ejecutar trabajo.
