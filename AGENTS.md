@@ -36,7 +36,7 @@ Los agentes son asistentes técnicos y herramientas de apoyo. No sustituyen al d
 
 Los agentes pueden ayudar a analizar, investigar, implementar, revisar, probar y documentar trabajo dentro de un alcance aprobado explícitamente. Deben respetar las decisiones que ya haya tomado el desarrollador y no deben reinterpretarlas ni ampliar su alcance de manera implícita.
 
-Los agentes personalizados `requirements_reviewer`, `architecture_reviewer` y `test_reviewer` son revisores de solo lectura. Únicamente el agente principal puede modificar archivos durante una implementación aprobada.
+Los agentes personalizados `spec_reviewer`, `plan_reviewer` y `test_reviewer` son revisores de solo lectura. Únicamente el agente principal puede modificar archivos durante una implementación aprobada.
 
 Antes de actuar sobre una decisión relevante, un agente debe:
 
@@ -92,8 +92,8 @@ Las funcionalidades, reglas de negocio, cambios en modelos de datos, arquitectur
 
 Para estos cambios se aplican tres puertas obligatorias:
 
-1. Una especificación en estado `draft` debe superar la revisión de `requirements_reviewer` y recibir una aprobación explícita del desarrollador.
-2. El plan técnico y sus tareas deben superar la revisión de `architecture_reviewer` y recibir una aprobación explícita del desarrollador.
+1. Una especificación en estado `draft` debe superar la revisión de `spec_reviewer` y recibir una aprobación explícita del desarrollador.
+2. El plan técnico y sus tareas deben superar la revisión de `plan_reviewer` y recibir una aprobación explícita del desarrollador.
 3. Incluso con la especificación y el plan aprobados, la implementación no comienza hasta que el desarrollador la solicite explícitamente.
 
 El silencio, la ausencia de objeciones, una petición de revisión o la aprobación de una fase anterior no autorizan la fase siguiente. Un resultado `BLOCKED` de cualquier revisor impide avanzar hasta resolver sus bloqueos.

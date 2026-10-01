@@ -2,23 +2,23 @@
 
 ## Foco actual
 
-La implementación documental local de la especificación `002` está completada y verificada. Su publicación y el CI externo permanecen pendientes.
+El renombrado de los revisores SDD está implementado y validado tanto estática como dinámicamente. El siguiente cambio relevante es formalizar mediante SDD el flujo Git automatizado para agentes. La publicación de la especificación `002` y el CI externo también siguen pendientes.
 
 ## Estado actual
 
 - La base Laravel 12 + React + Inertia está confirmada en `main` y `dev`, con frontend TypeScript en `resources/js` y autenticación Breeze adaptada a CSS Modules y CSS global, sin Tailwind.
 - El sistema SDD está publicado en `dev` mediante el commit `0bf9823`: proceso permanente, tres skills compartidas y tres agentes revisores de solo lectura.
-- Las tres skills se han validado con `quick_validate.py`, se descubren en una sesión nueva de Codex y responden a su invocación explícita. La configuración TOML y las simulaciones de las puertas también pasan.
-- `requirements_reviewer`, `architecture_reviewer` y `test_reviewer` se han ejecutado por nombre sobre la especificación `001`; sus revisiones finales devolvieron `PASS`.
+- Los revisores activos se denominan `spec_reviewer`, `plan_reviewer` y `test_reviewer`; sus configuraciones TOML son válidas y mantienen el modo de solo lectura.
+- Las tres skills pasan `quick_validate.py`, nombran al revisor correspondiente y una sesión nueva de Codex ha invocado correctamente a `spec_reviewer`, `plan_reviewer` y `test_reviewer` en modo de solo lectura.
 - [`docs/modelo-relacional.md`](docs/modelo-relacional.md) representa visualmente las 20 tablas vigentes y [`docs/atributos-modelo-relacional.md`](docs/atributos-modelo-relacional.md) documenta sus atributos, restricciones conceptuales y relaciones. La implementación local no incluye código, migraciones ni cambios en PostgreSQL.
-- La especificación `002`, su plan y sus tareas están completados localmente tras obtener `PASS` de `requirements_reviewer`, `architecture_reviewer` y `test_reviewer`. Las comprobaciones documentales y `git diff --check` pasan.
+- La especificación `002`, su plan y sus tareas están completados localmente tras superar las tres revisiones SDD. Las comprobaciones documentales y `git diff --check` pasan.
 - Pint, las 25 pruebas PHP, ESLint, Prettier, Vitest, el build y las comprobaciones documentales pasan.
 - El workflow [**Integración y seguridad**](https://github.com/AngelRagel05/Recetaria/actions/runs/36794565559) ha pasado para `ea866a8` en `dev`.
 - Las decisiones aprobadas están en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) y el flujo está definido en [`docs/proceso-sdd.md`](docs/proceso-sdd.md).
 
 ## En curso
 
-No hay implementación en curso. Los cambios documentales están integrados localmente; su publicación y la comprobación del CI externo permanecen pendientes.
+El flujo Git automatizado para agentes debe documentarse como la especificación SDD `003-flujo-git-automatizado` antes de planificarlo o implementarlo. Los cambios documentales de la especificación `002` siguen integrados localmente; su publicación y la comprobación del CI externo permanecen pendientes.
 
 ## Alcance de esta memoria
 
@@ -60,6 +60,7 @@ Actualmente no hay ninguna deuda técnica registrada.
 
 ## Siguientes pasos
 
+- Crear y someter a revisión la especificación SDD `003-flujo-git-automatizado`.
 - Publicar los cambios documentales de la especificación `002` cuando el desarrollador lo decida.
 - Tras la publicación, comprobar el CI y actualizar esta memoria con el resultado externo real.
 
