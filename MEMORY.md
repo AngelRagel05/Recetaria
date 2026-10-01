@@ -2,7 +2,7 @@
 
 ## Foco actual
 
-Publicar y comprobar en CI el modelo relacional inicial de Recetaria.
+Integrar en `dev` el modelo relacional inicial de Recetaria y comprobar su CI.
 
 ## Estado actual
 
@@ -14,11 +14,12 @@ Publicar y comprobar en CI el modelo relacional inicial de Recetaria.
 - `requirements_reviewer`, `architecture_reviewer` y `test_reviewer` se han ejecutado por nombre sobre la especificación `001`; sus revisiones finales devolvieron `PASS`.
 - El modelo relacional inicial está implementado y verificado localmente en `docs/modelo-relacional-inicial`: contiene 21 tablas de dominio, 28 relaciones Mermaid, los roles iniciales `member` y `admin` con `member` como predeterminado, y ninguna migración ni cambio en PostgreSQL.
 - Pint, las 25 pruebas PHP, ESLint, Prettier, Vitest, el build y las comprobaciones documentales pasan.
+- El modelo está publicado en la rama remota `docs/modelo-relacional-inicial` mediante el commit `2889808`.
 - Las decisiones aprobadas están en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) y el flujo está definido en [`docs/proceso-sdd.md`](docs/proceso-sdd.md).
 
 ## En curso
 
-La implementación y la verificación local del modelo están completas. Quedan pendientes únicamente el commit, la publicación autorizada y la comprobación del CI.
+La implementación, la verificación local, el commit y la publicación de la rama de trabajo están completos. Quedan pendientes la integración autorizada en `dev` y la comprobación del CI correspondiente.
 
 ## Alcance de esta memoria
 
@@ -52,7 +53,7 @@ No hay decisiones técnicas pendientes para cerrar el modelo conceptual. Los atr
 
 ## Problemas conocidos
 
-No hay problemas conocidos en la implementación local. El CI de este cambio no puede comprobarse hasta que exista una publicación autorizada.
+No hay problemas conocidos en la implementación local. El push de la rama de trabajo no generó una ejecución de CI porque el workflow solo se activa en pushes a `main` y `dev`, o en pull requests dirigidos a esas ramas.
 
 ## Deuda técnica
 
@@ -60,7 +61,7 @@ Actualmente no hay ninguna deuda técnica registrada.
 
 ## Siguientes pasos
 
-- Crear el commit y publicar la rama solo cuando el desarrollador lo solicite.
-- Comprobar el CI publicado y cerrar la memoria en una segunda actualización documental.
+- Integrar la rama en `dev` únicamente cuando el desarrollador lo solicite.
+- Comprobar el CI generado por esa integración y cerrar este pendiente operativo.
 
 Estos siguientes pasos describen la dirección natural del proyecto; no constituyen una autorización automática para ejecutar trabajo.
