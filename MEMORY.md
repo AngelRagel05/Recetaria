@@ -2,7 +2,7 @@
 
 ## Foco actual
 
-La implementación documental de `003-flujo-git-automatizado` está completada y verificada localmente en `feat/automatiza-flujo-git`, adoptada con base `1dcc7b4`; `test_reviewer` dio `PASS`. La rama de trabajo aún requiere autorizaciones específicas para commit y publicación, y después para cambio a `dev`, merge, publicación de `dev` y cierre del registro local. El CI externo de `003` sigue pendiente. La publicación de la especificación `002` y su CI externo también siguen pendientes.
+La implementación documental de `004-flujo-git-local-para-agentes` está verificada localmente en `feat/simplifica-flujo-git-agentes`, con base `f97237d` y rama inicial publicada conforme al flujo 003. `test_reviewer` dio `PASS` y la especificación y tareas están `completed`; el plan permanece `approved`. El desarrollador asumirá la publicación e integración de la rama; su CI externo aún no se ha comprobado. El CI externo de la 003 integrada en `dev` y la publicación y CI de la 002 también siguen sin comprobarse aquí.
 
 ## Estado actual
 
@@ -18,7 +18,7 @@ La implementación documental de `003-flujo-git-automatizado` está completada y
 
 ## En curso
 
-La skill y las reglas permanentes de `003` ya reflejan el contrato aprobado de permisos separados y conservación de ambas ramas. La validación de la skill y su YAML, la revisión documental de `CA-01` a `CA-11`, whitespace y `test_reviewer` pasaron; no se realizaron pruebas dinámicas del comportamiento del agente ni operaciones Git protegidas. Los cambios documentales de `002` siguen integrados localmente, pendientes de publicación y CI externo.
+La skill Git y las reglas permanentes ya describen el flujo local de la 004. La validación estática, el diff, whitespace y la revisión documental de `CA-01` a `CA-10` pasaron; no se probó dinámicamente el comportamiento del agente. La 003 permanece como historial completado. La publicación, integración y CI externos de la 004 no están verificados. Los cambios documentales de la 002 siguen pendientes de publicación y comprobación externa.
 
 ## Alcance de esta memoria
 
@@ -60,7 +60,8 @@ Actualmente no hay ninguna deuda técnica registrada.
 
 ## Siguientes pasos
 
-- Solicitar, cuando corresponda, cada autorización Git específica para publicar e integrar `003`; el `PASS` documental no las sustituye.
+- El desarrollador gestionará la publicación e integración de la rama `004`; después se comprobará el CI real.
+- Comprobar el CI real de `003` tras su integración en `dev` antes de registrar un resultado externo.
 - Publicar los cambios documentales de la especificación `002` cuando el desarrollador lo decida.
 - Tras la publicación, comprobar el CI y actualizar esta memoria con el resultado externo real.
 

@@ -143,6 +143,8 @@ Cuando el cierre dependa de publicación o CI externo, `MEMORY.md` se actualiza 
 
 La actualización documental de la segunda etapa cierra el estado del cambio funcional y no vuelve a abrirlo por el CI generado por esa misma actualización.
 
+La segunda etapa se realiza tras observar el CI real, mediante una nueva tarea y rama local `docs/` sujeta al mismo flujo de permisos. El agente no publica ni integra esa rama.
+
 No se debe marcar una tarea como completada si alguno de estos puntos aplicables sigue pendiente.
 
 Este informe puede incluir, por ejemplo, la elección de una estructura ya utilizada en el proyecto, la reutilización de una abstracción existente, la aplicación de una convención establecida o la colocación de una lógica en una capa concreta conforme a una decisión ya existente. No debe convertirse en una explicación línea por línea ni añadir ruido innecesario. No es necesario informar sobre decisiones triviales como importaciones, formato, nombres locales evidentes o ajustes automáticos del formateador. El objetivo es que el desarrollador pueda comprender y defender las decisiones relevantes del código generado o modificado por el agente.
@@ -224,15 +226,15 @@ La estrategia de ramas aprobada es:
 
 - `main` es la rama estable y desplegada.
 - `dev` es la rama principal de integración para desarrollo.
-- Las ramas de trabajo nacen desde `dev` y vuelven a `dev`.
+- Las ramas de trabajo nacen desde `dev`; el desarrollador decide cómo publicarlas e integrarlas de nuevo en `dev`.
 
 Los agentes deben aplicar [el flujo Git de Recetaria](.agents/skills/recetaria-git-flow/SKILL.md) antes de cambiar el repositorio o realizar operaciones Git de una tarea. El desarrollador puede optar por su propio flujo. Solo puede haber una tarea activa; su rama y commit base se registran en la configuración Git local, mientras que `MEMORY.md` informa del estado operativo. Una rama de trabajo acompaña todas las fases SDD de su tarea.
 
-- Los tipos aprobados para ramas y commits de trabajo son `feat`, `fix`, `refactor`, `docs`, `test` y `chore`. Los slugs usan ASCII en kebab-case y los commits de trabajo usan `<tipo>: <descripción en español>`. El mensaje `merge: integra <rama> en dev` se reserva al commit automático de `merge --no-ff`.
-- Desde `dev` limpio y sincronizado, el agente propone una rama y solicita autorización específica para crearla y registrar su base. La publicación inicial requiere otro permiso y debe completarse antes de modificar archivos.
-- Cada commit, cada push de la rama, el cambio a `dev`, el merge, el push de `dev` y el cierre del registro requieren autorizaciones independientes, inmediatas y de un solo uso. Un `PASS`, una aprobación SDD o una autorización anterior no cubren otra acción; cada reintento requiere un permiso nuevo. Las comprobaciones de solo lectura no necesitan permiso.
-- Con verificaciones vigentes y la rama completamente publicada, el agente cambia a `dev` tras su permiso y valida la base. Solo con otro permiso realiza allí `merge --no-ff`; publicar `dev` necesita un tercero. Después, un cierre autorizado retira únicamente las dos claves de tarea activa de Git local: las ramas de trabajo permanecen tanto localmente como en el remoto.
-- Si `dev`, su remoto o la base cambian durante la tarea, el agente se detiene y consulta. No resuelve la deriva con pull, merge, rebase, reset ni stash automáticos. No opera automáticamente sobre `main` ni reescribe el historial.
+- Los tipos aprobados para ramas y commits de trabajo son `feat`, `fix`, `refactor`, `docs`, `test` y `chore`. Los slugs usan ASCII en kebab-case y los commits de trabajo usan `<tipo>: <descripción en español>`. El agente no crea commits de merge.
+- Desde `dev` limpio y sincronizado, el agente propone una rama y solicita autorización específica para crearla localmente y registrar su base. No se exige ni se realiza un push inicial para empezar a modificar archivos.
+- Cada commit requiere mostrar antes el mensaje y las rutas exactas, y obtener un permiso propio, inmediato y de un solo uso. Se permiten varios commits locales. Un `PASS`, una aprobación SDD o un permiso anterior no autorizan otro commit; cada reintento requiere un permiso nuevo. Las comprobaciones de solo lectura no necesitan permiso.
+- Con verificaciones vigentes, el agente identifica expresamente el commit final. Su permiso cubre prepararlo, crearlo y, solo si tiene éxito, retirar las dos claves locales de tarea activa. El agente permanece en su rama; no hace pushes, cambios a `dev`, merges ni borrado de ramas como parte de este flujo. La publicación, integración y sus conflictos corresponden al desarrollador.
+- Si `dev` o su remoto avanzan durante la tarea, el agente informa y puede continuar en la rama local sin alterar la base. No resuelve la deriva con fetch, pull, merge, rebase, reset ni stash automáticos. No opera automáticamente sobre `main` ni reescribe el historial.
 - Los cambios deben ser coherentes y limitarse al alcance aprobado. Se preserva el trabajo existente, se excluyen secretos y se revisa el diff antes de informar de la finalización.
 
 ## 11. Documentación y memoria del proyecto

@@ -72,13 +72,13 @@ GitHub Actions comprobará en los pushes a `main` y `dev`, y en los pull request
 
 - `main` es la rama estable y desplegada.
 - `dev` es la rama principal de integración para desarrollo.
-- Las ramas de trabajo nacen desde `dev` y vuelven a `dev`.
+- Las ramas de trabajo nacen desde `dev`; el desarrollador se encarga de publicarlas e integrarlas.
 - El flujo de los agentes se define en [`$recetaria-git-flow`](../.agents/skills/recetaria-git-flow/SKILL.md); para el desarrollador es opcional. Usa comandos Git ordinarios, sin scripts propios, hooks, dependencias ni ampliaciones del CI.
-- Los tipos permitidos para ramas y commits de trabajo son `feat`, `fix`, `refactor`, `docs`, `test` y `chore`. El slug es ASCII en kebab-case y los commits de trabajo siguen `<tipo>: <descripción en español>`. El commit automático del merge utiliza excepcionalmente `merge: integra <rama> en dev`.
+- Los tipos permitidos para ramas y commits de trabajo son `feat`, `fix`, `refactor`, `docs`, `test` y `chore`. El slug es ASCII en kebab-case y los commits de trabajo siguen `<tipo>: <descripción en español>`. El agente no crea commits de merge.
 - Solo hay una tarea activa, identificada mediante rama y commit base en la configuración Git local. `MEMORY.md` es informativo. Una rama acompaña la especificación, el plan, la implementación y la verificación.
-- La creación y registro de una rama desde `dev` limpio y sincronizado requieren autorización propia. Su primer push necesita otra y debe concluir antes de modificar archivos. Cada commit, cada push posterior, el cambio a `dev`, el merge, el push de `dev` y el cierre necesitan permisos separados y de un solo uso; todos los reintentos requieren permisos nuevos.
-- Con verificaciones vigentes, la rama de trabajo completamente publicada y base validada, el agente cambia a `dev` tras su permiso y ejecuta allí `merge --no-ff` solo con otro. Publicar `dev` exige otro permiso. El cierre autorizado retira únicamente las dos claves de tarea activa; conserva las ramas de trabajo local y remota. Tras observar el CI, el resultado se registra en `MEMORY.md` desde una nueva rama `docs/` sometida al mismo flujo y también conservada.
-- Si `dev`, el remoto o la base cambian, el agente se detiene para consultar. No integra ni reescribe automáticamente y no opera sobre `main`.
+- La creación y registro de una rama local desde `dev` limpio y sincronizado requieren autorización propia. No hay push inicial obligatorio ni publicación por el agente. Cada commit local requiere mostrar mensaje y rutas exactas y obtener un permiso separado y de un solo uso; cada reintento exige uno nuevo.
+- Con verificaciones vigentes, el agente identifica el commit final antes de pedir permiso. Solo tras su éxito retira ambas claves locales con ese mismo permiso y permanece en la rama, que conserva. El desarrollador asume la publicación, integración y posibles conflictos. Tras observar el CI, el resultado se registra en `MEMORY.md` mediante una nueva tarea y rama local `docs/` sometida al mismo flujo; el CI de ese cierre documental no reabre la tarea funcional.
+- Si `dev` o su remoto avanzan durante la tarea, el agente informa y continúa en su rama sin modificar la base ni integrar automáticamente. No opera sobre `main` ni reescribe el historial.
 
 ## Documentación
 

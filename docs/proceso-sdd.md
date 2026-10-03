@@ -36,7 +36,7 @@ docs/specs/NNN-nombre-descriptivo/
 
 La carpeta `docs/specs/` se crea cuando exista la primera especificación real. No se deben añadir ejemplos ficticios ni archivos de relleno.
 
-Los agentes utilizan una sola rama de trabajo para la especificación, el plan, la implementación y la verificación de cada tarea. Antes de modificar archivos, aplican [`$recetaria-git-flow`](../.agents/skills/recetaria-git-flow/SKILL.md): autorizan por separado la creación y registro de la rama desde `dev` y su publicación inicial. La skill gestiona Git y no sustituye ninguna puerta SDD.
+Los agentes utilizan una sola rama de trabajo para la especificación, el plan, la implementación y la verificación de cada tarea. Antes de modificar archivos, aplican [`$recetaria-git-flow`](../.agents/skills/recetaria-git-flow/SKILL.md): la creación local y el registro de la rama desde `dev` requieren autorización propia; no se exige push inicial. La skill gestiona Git y no sustituye ninguna puerta SDD.
 
 ### Especificación
 
@@ -123,7 +123,7 @@ Evidencias:
 
 Los revisores no pueden aprobar fases, tomar decisiones de producto, modificar archivos ni convertir una recomendación en autorización.
 
-Una aprobación de especificación o plan, un `PASS` de cualquier revisor y una solicitud de implementación no autorizan la creación de rama, commits, pushes, cambio a `dev`, merge ni cierre de tarea. Cada acción lógica que cambie Git requiere su propio permiso inmediato y de un solo uso; las comprobaciones de solo lectura no lo necesitan. Los commits de cada fase pueden acumularse localmente y publicarse después mediante un push autorizado, manteniendo una sola rama para la tarea. Tras publicar `dev`, el cierre autorizado retira solo el registro local de tarea activa y conserva la rama local y la remota.
+Una aprobación de especificación o plan, un `PASS` de cualquier revisor y una solicitud de implementación no autorizan crear una rama ni hacer commits. Cada acción lógica que cambie Git requiere un permiso específico, inmediato y de un solo uso; las comprobaciones de solo lectura no lo necesitan. Los commits de cada fase pueden acumularse localmente en una sola rama. Tras las verificaciones aplicables y `test_reviewer`, el agente señala el commit final y solicita un permiso que cubre prepararlo, crearlo y, solo después de su éxito, retirar las dos claves locales de tarea activa. El agente permanece en esa rama; el desarrollador se encarga de publicar e integrar, sin pushes, cambios a `dev`, merges ni borrado de ramas por parte del agente.
 
 ## Cierre de memoria
 
@@ -132,4 +132,4 @@ Cuando el trabajo depende de publicación o CI externo, `MEMORY.md` se cierra en
 1. Después de la verificación local registra que la implementación local está completa y qué publicación o comprobación externa permanece pendiente.
 2. Después de publicar y comprobar el CI elimina ese pendiente y refleja el resultado real.
 
-La segunda actualización se realiza en una nueva rama `docs/` mediante el mismo flujo de permisos, después de publicar `dev` y observar su CI; no se modifica `dev` directamente y la rama `docs/` se conserva tras su cierre. Esa actualización es el cierre documental del cambio funcional. El CI provocado por ella no reabre la tarea ya verificada.
+La segunda actualización se realiza en una nueva tarea y rama local `docs/` mediante el mismo flujo de permisos, después de que el desarrollador publique e integre el trabajo y se observe su CI. El agente no modifica `dev` directamente ni publica la rama `docs/`; esa actualización registra el cierre documental del cambio funcional. El CI provocado por ella no reabre la tarea ya verificada.
