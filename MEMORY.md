@@ -2,7 +2,7 @@
 
 ## Foco actual
 
-El renombrado de los revisores SDD está implementado y validado tanto estática como dinámicamente. El siguiente cambio relevante es formalizar mediante SDD el flujo Git automatizado para agentes. La publicación de la especificación `002` y el CI externo también siguen pendientes.
+La implementación documental de `003-flujo-git-automatizado` está completada y verificada localmente en `feat/automatiza-flujo-git`, adoptada con base `1dcc7b4`; `test_reviewer` dio `PASS`. La rama de trabajo aún requiere autorizaciones específicas para commit y publicación, y después para cambio a `dev`, merge, publicación de `dev` y cierre del registro local. El CI externo de `003` sigue pendiente. La publicación de la especificación `002` y su CI externo también siguen pendientes.
 
 ## Estado actual
 
@@ -18,7 +18,7 @@ El renombrado de los revisores SDD está implementado y validado tanto estática
 
 ## En curso
 
-El flujo Git automatizado para agentes debe documentarse como la especificación SDD `003-flujo-git-automatizado` antes de planificarlo o implementarlo. Los cambios documentales de la especificación `002` siguen integrados localmente; su publicación y la comprobación del CI externo permanecen pendientes.
+La skill y las reglas permanentes de `003` ya reflejan el contrato aprobado de permisos separados y conservación de ambas ramas. La validación de la skill y su YAML, la revisión documental de `CA-01` a `CA-11`, whitespace y `test_reviewer` pasaron; no se realizaron pruebas dinámicas del comportamiento del agente ni operaciones Git protegidas. Los cambios documentales de `002` siguen integrados localmente, pendientes de publicación y CI externo.
 
 ## Alcance de esta memoria
 
@@ -60,7 +60,7 @@ Actualmente no hay ninguna deuda técnica registrada.
 
 ## Siguientes pasos
 
-- Crear y someter a revisión la especificación SDD `003-flujo-git-automatizado`.
+- Solicitar, cuando corresponda, cada autorización Git específica para publicar e integrar `003`; el `PASS` documental no las sustituye.
 - Publicar los cambios documentales de la especificación `002` cuando el desarrollador lo decida.
 - Tras la publicación, comprobar el CI y actualizar esta memoria con el resultado externo real.
 

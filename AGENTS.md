@@ -226,15 +226,14 @@ La estrategia de ramas aprobada es:
 - `dev` es la rama principal de integración para desarrollo.
 - Las ramas de trabajo nacen desde `dev` y vuelven a `dev`.
 
-Las ramas de trabajo utilizarán prefijos según el tipo de cambio, incluidos al menos `feat/`, `fix/`, `refactor/` y `docs/`. No se debe inventar una lista exhaustiva de prefijos mientras no resulte necesaria.
+Los agentes deben aplicar [el flujo Git de Recetaria](.agents/skills/recetaria-git-flow/SKILL.md) antes de cambiar el repositorio o realizar operaciones Git de una tarea. El desarrollador puede optar por su propio flujo. Solo puede haber una tarea activa; su rama y commit base se registran en la configuración Git local, mientras que `MEMORY.md` informa del estado operativo. Una rama de trabajo acompaña todas las fases SDD de su tarea.
 
-- Los cambios deben ser coherentes y limitarse al alcance aprobado.
-- No se debe modificar código ni documentación no relacionados sin una razón clara.
-- Se debe preservar el trabajo existente y revisar el diff antes de informar de la finalización.
-- No se deben crear commits automáticamente salvo que el desarrollador lo solicite explícitamente.
-- No se debe hacer push automáticamente salvo que el desarrollador lo solicite explícitamente.
-- No se deben ampliar las convenciones para los nombres de las ramas ni inventar convenciones para los mensajes de commit antes de que el desarrollador las decida.
-- No se debe reescribir el historial ni utilizar operaciones destructivas de Git sin autorización explícita.
+- Los tipos aprobados para ramas y commits de trabajo son `feat`, `fix`, `refactor`, `docs`, `test` y `chore`. Los slugs usan ASCII en kebab-case y los commits de trabajo usan `<tipo>: <descripción en español>`. El mensaje `merge: integra <rama> en dev` se reserva al commit automático de `merge --no-ff`.
+- Desde `dev` limpio y sincronizado, el agente propone una rama y solicita autorización específica para crearla y registrar su base. La publicación inicial requiere otro permiso y debe completarse antes de modificar archivos.
+- Cada commit, cada push de la rama, el cambio a `dev`, el merge, el push de `dev` y el cierre del registro requieren autorizaciones independientes, inmediatas y de un solo uso. Un `PASS`, una aprobación SDD o una autorización anterior no cubren otra acción; cada reintento requiere un permiso nuevo. Las comprobaciones de solo lectura no necesitan permiso.
+- Con verificaciones vigentes y la rama completamente publicada, el agente cambia a `dev` tras su permiso y valida la base. Solo con otro permiso realiza allí `merge --no-ff`; publicar `dev` necesita un tercero. Después, un cierre autorizado retira únicamente las dos claves de tarea activa de Git local: las ramas de trabajo permanecen tanto localmente como en el remoto.
+- Si `dev`, su remoto o la base cambian durante la tarea, el agente se detiene y consulta. No resuelve la deriva con pull, merge, rebase, reset ni stash automáticos. No opera automáticamente sobre `main` ni reescribe el historial.
+- Los cambios deben ser coherentes y limitarse al alcance aprobado. Se preserva el trabajo existente, se excluyen secretos y se revisa el diff antes de informar de la finalización.
 
 ## 11. Documentación y memoria del proyecto
 

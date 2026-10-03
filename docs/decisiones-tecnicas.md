@@ -73,9 +73,12 @@ GitHub Actions comprobará en los pushes a `main` y `dev`, y en los pull request
 - `main` es la rama estable y desplegada.
 - `dev` es la rama principal de integración para desarrollo.
 - Las ramas de trabajo nacen desde `dev` y vuelven a `dev`.
-- Las ramas utilizarán prefijos según el tipo de cambio, incluidos al menos `feat/`, `fix/`, `refactor/` y `docs/`.
-- No se debe inventar una lista exhaustiva de prefijos mientras no resulte necesaria.
-- No se deben crear commits ni hacer push automáticamente salvo petición explícita del desarrollador.
+- El flujo de los agentes se define en [`$recetaria-git-flow`](../.agents/skills/recetaria-git-flow/SKILL.md); para el desarrollador es opcional. Usa comandos Git ordinarios, sin scripts propios, hooks, dependencias ni ampliaciones del CI.
+- Los tipos permitidos para ramas y commits de trabajo son `feat`, `fix`, `refactor`, `docs`, `test` y `chore`. El slug es ASCII en kebab-case y los commits de trabajo siguen `<tipo>: <descripción en español>`. El commit automático del merge utiliza excepcionalmente `merge: integra <rama> en dev`.
+- Solo hay una tarea activa, identificada mediante rama y commit base en la configuración Git local. `MEMORY.md` es informativo. Una rama acompaña la especificación, el plan, la implementación y la verificación.
+- La creación y registro de una rama desde `dev` limpio y sincronizado requieren autorización propia. Su primer push necesita otra y debe concluir antes de modificar archivos. Cada commit, cada push posterior, el cambio a `dev`, el merge, el push de `dev` y el cierre necesitan permisos separados y de un solo uso; todos los reintentos requieren permisos nuevos.
+- Con verificaciones vigentes, la rama de trabajo completamente publicada y base validada, el agente cambia a `dev` tras su permiso y ejecuta allí `merge --no-ff` solo con otro. Publicar `dev` exige otro permiso. El cierre autorizado retira únicamente las dos claves de tarea activa; conserva las ramas de trabajo local y remota. Tras observar el CI, el resultado se registra en `MEMORY.md` desde una nueva rama `docs/` sometida al mismo flujo y también conservada.
+- Si `dev`, el remoto o la base cambian, el agente se detiene para consultar. No integra ni reescribe automáticamente y no opera sobre `main`.
 
 ## Documentación
 

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Flujo Git supervisado de Recetaria"
+  short_description: "Guía ramas y permisos Git separados para agentes"
+  default_prompt: "Usa $recetaria-git-flow antes de modificar este repositorio o realizar una operación Git; solicita un permiso específico para cada acción lógica."
+
+policy:
+  allow_implicit_invocation: true
