@@ -1,0 +1,275 @@
+.feed {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.card {
+    overflow: hidden;
+    border: 1px solid #dce3d7;
+    border-radius: 1.35rem;
+    background: #fffefa;
+    box-shadow: 0 1rem 3rem rgb(50 92 63 / 9%);
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 1.1rem;
+}
+
+.avatar {
+    display: grid;
+    flex: 0 0 2.75rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #dce3d7;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
+.authorBlock {
+    display: grid;
+    min-width: 0;
+    gap: 0.15rem;
+}
+
+.authorBlock strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.authorBlock span {
+    overflow: hidden;
+    color: #6b746b;
+    font-size: 0.85rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.moreButton {
+    margin-left: auto;
+    border: 0;
+    background: transparent;
+    color: #526057;
+    font-size: 1.2rem;
+}
+
+.media {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    margin: 0;
+    overflow: hidden;
+    background: #e7e9df;
+}
+
+.media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carouselButton {
+    position: absolute;
+    top: 50%;
+    display: grid;
+    width: 2.6rem;
+    height: 2.6rem;
+    place-items: center;
+    transform: translateY(-50%);
+    border: 1px solid rgb(255 255 255 / 65%);
+    border-radius: 50%;
+    background: rgb(28 43 32 / 78%);
+    color: #fff;
+    font-size: 1.1rem;
+    backdrop-filter: blur(8px);
+}
+
+.carouselButton[aria-disabled='true'] {
+    opacity: 0.38;
+}
+
+.carouselPrevious {
+    left: 0.8rem;
+}
+
+.carouselNext {
+    right: 0.8rem;
+}
+
+.imagePosition {
+    position: absolute;
+    right: 0.8rem;
+    bottom: 0.8rem;
+    padding: 0.3rem 0.55rem;
+    border-radius: 999px;
+    background: rgb(28 43 32 / 78%);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    backdrop-filter: blur(8px);
+}
+
+.cardBody {
+    display: grid;
+    gap: 1rem;
+    padding: 1.1rem;
+}
+
+.caption {
+    margin: 0;
+    color: #364239;
+    line-height: 1.6;
+}
+
+.recipeReference {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.9rem;
+    border: 1px solid #d8e3d1;
+    border-radius: 1rem;
+    background: #f4f7ee;
+}
+
+.recipeReference > div {
+    display: grid;
+    gap: 0.1rem;
+}
+
+.recipeReference strong {
+    color: #253b2b;
+}
+
+.recipeReference span:last-child {
+    color: #667168;
+    font-size: 0.82rem;
+}
+
+.recipeIcon {
+    display: grid;
+    flex: 0 0 2.4rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    place-items: center;
+    border-radius: 0.8rem;
+    background: #dbe9c9;
+    color: #325c3f;
+    font-size: 1.25rem;
+}
+
+.recipeEyebrow {
+    color: #527258 !important;
+    font-size: 0.68rem !important;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+}
+
+.action {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.4rem;
+    padding: 0.48rem 0.75rem;
+    border: 1px solid #d9dfd7;
+    border-radius: 999px;
+    background: #fff;
+    color: #415047;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.action:hover {
+    border-color: #9eb69d;
+    background: #f4f7ee;
+}
+
+.actionActive {
+    border-color: #aec68a;
+    background: #eaf2dc;
+    color: #294f35;
+}
+
+.commentPreview {
+    margin: 0;
+    padding: 0.8rem;
+    border-left: 3px solid #bbd784;
+    background: #f7f8f2;
+    color: #59645b;
+    font-size: 0.86rem;
+    line-height: 1.5;
+}
+
+.emptyState {
+    display: grid;
+    justify-items: center;
+    gap: 0.55rem;
+    padding: 3.5rem 1.5rem;
+    border: 1px dashed #b8c7b4;
+    border-radius: 1.35rem;
+    background: #fffefa;
+    text-align: center;
+}
+
+.emptyState > span {
+    color: #6f8e63;
+    font-size: 2rem;
+}
+
+.emptyState h2,
+.emptyState p {
+    margin: 0;
+}
+
+.emptyState p {
+    max-width: 30rem;
+    color: #667168;
+    line-height: 1.55;
+}
+
+.visuallyHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (max-width: 480px) {
+    .card {
+        border-right: 0;
+        border-left: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .cardHeader,
+    .cardBody {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+
+    .action {
+        flex: 1 1 auto;
+        justify-content: center;
+    }
+}

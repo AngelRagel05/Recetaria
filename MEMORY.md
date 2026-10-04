@@ -2,67 +2,35 @@
 
 ## Foco actual
 
-La implementación documental de `004-flujo-git-local-para-agentes` está verificada localmente en `feat/simplifica-flujo-git-agentes`, con base `f97237d` y rama inicial publicada conforme al flujo 003. `test_reviewer` dio `PASS` y la especificación y tareas están `completed`; el plan permanece `approved`. El desarrollador asumirá la publicación e integración de la rama; su CI externo aún no se ha comprobado. El CI externo de la 003 integrada en `dev` y la publicación y CI de la 002 también siguen sin comprobarse aquí.
+La implementación local de [`005-prototipo-visual-feed-social`](docs/specs/005-prototipo-visual-feed-social/spec.md) está completa y verificada en `feat/prototipo-visual-feed-social`, con base `3c7aa84`. `test_reviewer` dio `PASS`; la especificación y las tareas están `completed` y el plan permanece `approved`. El desarrollador gestionará la publicación e integración de la rama, y su CI externo todavía no se ha observado.
 
 ## Estado actual
 
-- La base Laravel 12 + React + Inertia está confirmada en `main` y `dev`, con frontend TypeScript en `resources/js` y autenticación Breeze adaptada a CSS Modules y CSS global, sin Tailwind.
-- El sistema SDD está publicado en `dev` mediante el commit `0bf9823`: proceso permanente, tres skills compartidas y tres agentes revisores de solo lectura.
-- Los revisores activos se denominan `spec_reviewer`, `plan_reviewer` y `test_reviewer`; sus configuraciones TOML son válidas y mantienen el modo de solo lectura.
-- Las tres skills pasan `quick_validate.py`, nombran al revisor correspondiente y una sesión nueva de Codex ha invocado correctamente a `spec_reviewer`, `plan_reviewer` y `test_reviewer` en modo de solo lectura.
-- [`docs/modelo-relacional.md`](docs/modelo-relacional.md) representa visualmente las 20 tablas vigentes y [`docs/atributos-modelo-relacional.md`](docs/atributos-modelo-relacional.md) documenta sus atributos, restricciones conceptuales y relaciones. La implementación local no incluye código, migraciones ni cambios en PostgreSQL.
-- La especificación `002`, su plan y sus tareas están completados localmente tras superar las tres revisiones SDD. Las comprobaciones documentales y `git diff --check` pasan.
-- Pint, las 25 pruebas PHP, ESLint, Prettier, Vitest, el build y las comprobaciones documentales pasan.
-- El workflow [**Integración y seguridad**](https://github.com/AngelRagel05/Recetaria/actions/runs/36794565559) ha pasado para `ea866a8` en `dev`.
-- Las decisiones aprobadas están en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) y el flujo está definido en [`docs/proceso-sdd.md`](docs/proceso-sdd.md).
+- La base sigue siendo Laravel 12, React, Inertia y TypeScript en `resources/js`, con CSS Modules y sin cambios backend ni nuevas dependencias en la 005.
+- `/` muestra un prototipo responsive diferenciado para visitante y miembro: seis publicaciones y CTA para visitante; `Inicio`, `Explorar`, creación, invitaciones y perfil ficticios para miembro.
+- Los componentes del feed reciben datos y callbacks; los fixtures deterministas y seis SVG culinarios locales están aislados de la presentación.
+- `PageProps.auth.user` admite `null`; las páginas protegidas existentes usan `AuthenticatedPageProps`.
+- El carrusel, las pestañas y los paneles ficticios conservan y restauran el foco según lo aprobado. Las interacciones autenticadas son locales y se reinician al recargar.
+- Pint, las 25 pruebas PHP, ESLint, Prettier, las 7 pruebas frontend, el build, `git diff --check` y la revisión responsive a 320 píxeles y escritorio pasan localmente.
+- Los seis SVG suman 7.954 bytes; el mayor ocupa 1.595 bytes y ninguno usa recursos remotos.
 
 ## En curso
 
-La skill Git y las reglas permanentes ya describen el flujo local de la 004. La validación estática, el diff, whitespace y la revisión documental de `CA-01` a `CA-10` pasaron; no se probó dinámicamente el comportamiento del agente. La 003 permanece como historial completado. La publicación, integración y CI externos de la 004 no están verificados. Los cambios documentales de la 002 siguen pendientes de publicación y comprobación externa.
+No queda implementación local pendiente dentro de la especificación 005. Su publicación, integración y CI externos no forman parte de esta entrega local.
 
-## Alcance de esta memoria
+## Contexto operativo
 
-`MEMORY.md` solo debe contener trabajo incompleto, decisiones pendientes, contexto y estado que sean relevantes para el foco actual del proyecto.
+- La rama de trabajo es `feat/prototipo-visual-feed-social` y su base registrada es `3c7aa84bd8f5be4ee96b345f4b515d34fbb86e28`.
+- La publicación y el CI externos previamente registrados para las especificaciones 004 y 002 no se han comprobado durante esta tarea.
+- Las decisiones técnicas vigentes permanecen en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) y el flujo SDD en [`docs/proceso-sdd.md`](docs/proceso-sdd.md).
 
-No debe convertirse en:
+## Problemas conocidos y deuda técnica
 
-- Un backlog de funcionalidades futuras.
-- Una lista de todo lo que todavía no existe.
-- Una lista de todas las decisiones que algún día habrá que tomar.
-- Un histórico de tareas completadas.
-- Una duplicación de Git o de la documentación permanente.
-
-Una ausencia o una decisión pendiente solo debe aparecer en `MEMORY.md` cuando sea relevante para el trabajo actual o para continuar correctamente desde el estado presente.
-
-Cuando deje de ser relevante:
-
-- Debe eliminarse de `MEMORY.md`; o
-- trasladarse a documentación permanente si posee valor a largo plazo.
-
-## Decisiones pendientes
-
-La especificación `002` mantiene fuera de alcance las políticas de borrado, la migración de datos existentes, la autorización y moderación, el contrato del primer administrador y la integración técnica con Cloudinary. Estas materias requerirán decisiones y especificaciones posteriores cuando entren en el foco del proyecto.
-
-## Contexto relevante
-
-- Recetaria será una aplicación web para descubrir, crear y compartir recetas.
-- Está concebida para ser una aplicación real, mantenible y razonablemente escalable, no solo una demostración.
-- El proyecto no se desarrolla mediante vibe coding. Los agentes apoyan al desarrollador, pero no son responsables de las decisiones de producto ni técnicas.
-- Todos los agentes deben leer `AGENTS.md` y este archivo antes de comenzar una tarea relevante.
-
-## Problemas conocidos
-
-No hay problemas conocidos en la implementación ni en su CI.
-
-## Deuda técnica
-
-Actualmente no hay ninguna deuda técnica registrada.
+No se han detectado problemas ni deuda técnica nuevos en la implementación local de la 005.
 
 ## Siguientes pasos
 
-- El desarrollador gestionará la publicación e integración de la rama `004`; después se comprobará el CI real.
-- Comprobar el CI real de `003` tras su integración en `dev` antes de registrar un resultado externo.
-- Publicar los cambios documentales de la especificación `002` cuando el desarrollador lo decida.
-- Tras la publicación, comprobar el CI y actualizar esta memoria con el resultado externo real.
+- El desarrollador gestionará la publicación e integración de la rama 005.
+- Después de observar el CI real, su resultado se registrará mediante una nueva tarea documental conforme al flujo del proyecto.
 
-Estos siguientes pasos describen la dirección natural del proyecto; no constituyen una autorización automática para ejecutar trabajo.
+Estos pasos no constituyen una autorización automática para publicar, integrar ni modificar otras ramas.

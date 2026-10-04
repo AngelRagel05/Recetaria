@@ -1,4 +1,4 @@
-import type { PageProps } from '@/types';
+import type { AuthenticatedPageProps } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import type { PropsWithChildren, ReactNode } from 'react';
 import styles from './AuthenticatedLayout.module.css';
@@ -7,7 +7,7 @@ export default function AuthenticatedLayout({
     children,
     header,
 }: PropsWithChildren<{ header?: ReactNode }>) {
-    const user = usePage<PageProps>().props.auth.user;
+    const user = usePage<AuthenticatedPageProps>().props.auth.user;
 
     return (
         <div className={styles.page}>

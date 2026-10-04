@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#d8e0a5"/><stop offset="1" stop-color="#5b8057"/></linearGradient>
+    <radialGradient id="bowl"><stop offset=".68" stop-color="#f5efe0"/><stop offset=".7" stop-color="#ccd5c1"/><stop offset="1" stop-color="#f8f4e9"/></radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <ellipse cx="600" cy="430" rx="380" ry="310" fill="url(#bowl)"/>
+  <ellipse cx="600" cy="430" rx="286" ry="220" fill="#8aaa51"/>
+  <g>
+    <circle cx="488" cy="390" r="54" fill="#f4e8be"/><circle cx="672" cy="353" r="47" fill="#d7c76c"/>
+    <circle cx="720" cy="492" r="58" fill="#f4e8be"/><circle cx="512" cy="505" r="45" fill="#d7c76c"/>
+    <path d="M574 327c45-56 96-30 78 32-40 21-69 11-78-32ZM421 444c40-61 95-41 83 25-43 25-72 17-83-25ZM610 527c46-50 94-24 72 34-41 18-68 6-72-34Z" fill="#2f7049"/>
+  </g>
+  <g fill="#d94f3d"><circle cx="555" cy="416" r="13"/><circle cx="653" cy="472" r="11"/><circle cx="756" cy="401" r="10"/></g>
+  <path d="M810 228 920 312 812 350c-38-29-39-86-2-122Z" fill="#cbe77f"/>
+  <path d="M832 251c26 18 46 39 62 63" stroke="#f9fff0" stroke-width="7"/>
+</svg>

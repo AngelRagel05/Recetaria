@@ -1,5 +1,5 @@
 import FormField from '@/Components/FormField';
-import type { PageProps } from '@/types';
+import type { AuthenticatedPageProps } from '@/types';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import type { FormEvent } from 'react';
 import styles from '../Profile.module.css';
@@ -11,7 +11,7 @@ export default function UpdateProfileInformationForm({
     mustVerifyEmail: boolean;
     status?: string;
 }) {
-    const user = usePage<PageProps>().props.auth.user;
+    const user = usePage<AuthenticatedPageProps>().props.auth.user;
     const { data, setData, patch, errors, processing, recentlySuccessful } =
         useForm({
             name: user.name,

@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { expect, test } from 'vitest';
-import FormField from './FormField';
+import FormField from '@/Components/FormField';
 
 test('muestra el error asociado al campo y permite introducir texto', () => {
     let value = '';
