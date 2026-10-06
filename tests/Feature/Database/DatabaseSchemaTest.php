@@ -254,9 +254,11 @@ class DatabaseSchemaTest extends TestCase
             $column->column_name => trim($column->column_default, "'::integer"),
         ])->all();
 
+        ksort($defaults);
+
         $this->assertSame([
-            'preparation_time_minutes' => '0',
             'cooking_time_minutes' => '0',
+            'preparation_time_minutes' => '0',
             'resting_time_minutes' => '0',
         ], $defaults);
     }

@@ -2,7 +2,7 @@
 
 ## Foco actual
 
-La especificación [`006-conexion-migraciones-postgresql`](docs/specs/006-conexion-migraciones-postgresql/spec.md) está completada en `feat/conexion-migraciones-postgresql`, con base `ca45a0aec2a9760a48101febef4b14b279b1b89a`. La implementación, la verificación local y la aplicación comprobada en Supabase están completas; `test_reviewer` dio `PASS`. La publicación, integración y CI externos todavía no se han observado.
+La especificación [`006-conexion-migraciones-postgresql`](docs/specs/006-conexion-migraciones-postgresql/spec.md) permanece completada. La corrección ligera del orden inestable detectado por CI está verificada localmente en `fix/orden-determinista-prueba-esquema`, con base `5752fee7103c151a05cc582f8e3208e680d761f7`; falta publicar o integrar la rama y observar una nueva ejecución externa.
 
 ## Estado actual
 
@@ -14,6 +14,7 @@ La especificación [`006-conexion-migraciones-postgresql`](docs/specs/006-conexi
 - `Role`, `User`, `RoleSeeder`, `UserFactory`, registro y perfil son compatibles con el esquema. El registro normaliza `username` y correo, resuelve `member` por nombre y devuelve el `503` aprobado si falta; el perfil conserva `username` inmutable y permite editar `bio`.
 - `migrate:fresh --seed`, rollback y reaplicación pasan sobre `recetaria_testing`. Las 73 pruebas PHP con 223 aserciones, las 12 pruebas frontend, Pint, ESLint, Prettier y el build pasan localmente.
 - Las pruebas de catálogo comparan las 20 claves primarias y las 24 unicidades aprobadas; el perfil rechaza por HTTP biografías de más de 500 caracteres sin modificar el valor almacenado.
+- La prueba de valores iniciales de tiempos ordena su mapa por nombre de columna antes de compararlo estrictamente, evitando depender del orden no garantizado de `information_schema`.
 
 ## En curso
 
@@ -21,24 +22,24 @@ La especificación [`006-conexion-migraciones-postgresql`](docs/specs/006-conexi
 - Supabase contiene las 28 tablas y las 28 migraciones aplicadas, incluidos RLS activo sin políticas y las restricciones e índices aprobados.
 - `RoleSeeder` dejó exactamente `member` y `admin`, sin usuarios ni contenido de muestra.
 - La conexión exige `sslmode=require`; una comprobación directa con `psql` y `libpq` confirmó negociación `TLSv1.3` con `TLS_AES_256_GCM_SHA384` y compresión desactivada en el pooler. `anon`, `authenticated` y `service_role` no conservan privilegios sobre ninguna tabla ni sobre las 23 secuencias de Recetaria.
-- No queda implementación local pendiente. El desarrollador gestionará la publicación e integración de la rama y después podrá comprobarse el CI real.
+- El CI del commit `5752fee` falló porque PostgreSQL devolvió las tres columnas de tiempo en un orden diferente al local, aunque sus valores eran correctos. La prueba dirigida, las 73 pruebas PHP y Pint pasan después de hacer determinista la comparación.
 
 ## Contexto operativo
 
-- Rama de trabajo: `feat/conexion-migraciones-postgresql`.
-- Base de la rama: `ca45a0aec2a9760a48101febef4b14b279b1b89a`.
-- La rama contiene el trabajo completo de la especificación 006; el agente no publicará ni integrará la rama.
+- Rama de trabajo: `fix/orden-determinista-prueba-esquema`.
+- Base de la rama: `5752fee7103c151a05cc582f8e3208e680d761f7`.
+- La corrección modifica únicamente la prueba de esquema y esta memoria operativa; el agente no publicará ni integrará la rama.
 - Supabase partía sin tablas ni datos de Recetaria. Las migraciones se aplicaron manualmente en dos lotes porque la primera ejecución detectó el supuesto incorrecto de que todas las tablas tenían `id`; la corrección quedó cubierta por una prueba de secuencias y se aplicó solo como migración pendiente.
 - No se debe usar `migrate:fresh`, rollback ni un seeder general contra Supabase.
 - Render no ejecutará migraciones durante el arranque; la aplicación remota es manual.
 
 ## Problemas conocidos y deuda técnica
 
-No quedan fallos conocidos ni se ha detectado deuda técnica nueva dentro del alcance aprobado. GitHub Actions solo podrá comprobarse después de que el desarrollador publique la rama.
+No quedan fallos locales conocidos ni se ha detectado deuda técnica nueva. La nueva ejecución de GitHub Actions sigue pendiente de publicación o integración por el desarrollador.
 
 ## Siguientes pasos
 
-1. El desarrollador gestionará la publicación e integración de la rama 006.
-2. Después de observar el CI real, su resultado se registrará mediante una nueva tarea documental conforme al flujo del proyecto.
+1. El desarrollador gestionará la publicación e integración de la rama de corrección.
+2. Después de observar el nuevo CI, su resultado se registrará mediante una nueva tarea documental conforme al flujo del proyecto.
 
 Estos pasos no autorizan automáticamente cambios remotos, commits, publicación ni integración.
