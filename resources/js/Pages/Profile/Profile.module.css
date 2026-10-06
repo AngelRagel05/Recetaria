@@ -25,6 +25,46 @@
     margin-top: 1.25rem;
 }
 
+.field {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.label {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.textarea {
+    width: 100%;
+    min-height: 8rem;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid #b7c4b4;
+    border-radius: 0.6rem;
+    background: white;
+    color: inherit;
+    font: inherit;
+    resize: vertical;
+}
+
+.textarea[aria-invalid='true'] {
+    border-color: #bd4d42;
+}
+
+.hint,
+.error {
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+.hint {
+    color: #59665b;
+}
+
+.error {
+    color: #a13d34;
+}
+
 .actions {
     display: flex;
     align-items: center;

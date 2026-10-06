@@ -24,9 +24,11 @@ Este documento recoge las decisiones técnicas iniciales aprobadas para Recetari
 ## Modelo de datos
 
 - El [`modelo relacional`](modelo-relacional.md) es la vista visual vigente para localizar las 20 tablas de dominio, sus relaciones y sus cardinalidades.
-- [`Atributos del modelo relacional`](atributos-modelo-relacional.md) es la referencia detallada vigente para consultar atributos, claves, índices, restricciones conceptuales y el funcionamiento de cada relación.
+- [`Atributos del modelo relacional`](atributos-modelo-relacional.md) es la referencia detallada vigente para consultar atributos, claves, índices, restricciones y el funcionamiento de cada relación.
 - Ambas vistas son complementarias y deben representar el mismo modelo: las recetas se publican de forma independiente y las imágenes de publicaciones pueden enlazar opcionalmente recetas publicadas.
-- El modelo sigue siendo conceptual. Estos documentos no crean ni autorizan migraciones, cambios en PostgreSQL, políticas de borrado, migraciones de datos ni mecanismos ejecutables para las reglas entre tablas.
+- Las migraciones de `006-conexion-migraciones-postgresql` materializan desde cero las 20 tablas de dominio y las siete tablas técnicas necesarias, con identificadores `BIGINT`, nombres plurales y borrado físico protegido.
+- PostgreSQL aplica las reglas declarativas de una fila. Las reglas que necesitan observar varias filas o tablas se implementarán posteriormente mediante acciones transaccionales de Laravel, sin triggers.
+- Las tablas públicas de Laravel habilitan RLS sin políticas y retiran privilegios a `anon`, `authenticated` y `service_role`. La Data API se desactiva manualmente y Laravel conserva una conexión PostgreSQL directa.
 
 ## Frontend y herramientas de build
 
@@ -58,15 +60,16 @@ El proyecto tendrá:
 
 Vitest será el ejecutor de pruebas frontend, jsdom proporcionará el entorno DOM y React Testing Library se utilizará para probar el comportamiento de componentes y páginas React. La base inicial de estas herramientas ya está instalada y configurada.
 
-PHPUnit será el ejecutor de las pruebas backend en Laravel.
+PHPUnit será el ejecutor de las pruebas backend en Laravel. Las pruebas de base de datos usarán exclusivamente una base PostgreSQL 17 local llamada `recetaria_testing`; una barrera previa a `RefreshDatabase` rechazará SQLite, hosts remotos, otros nombres de base y conexiones mediante URL.
 
-GitHub Actions comprobará en los pushes a `main` y `dev`, y en los pull requests dirigidos a cualquiera de esas ramas, las pruebas, el formato, el lint, el build y las dependencias mediante las auditorías de Composer y npm. El workflow utilizará permisos de solo lectura y no necesitará secretos del proyecto.
+GitHub Actions comprobará en los pushes a `main` y `dev`, y en los pull requests dirigidos a cualquiera de esas ramas, las pruebas, el formato, el lint, el build y las dependencias mediante las auditorías de Composer y npm. El workflow utilizará PostgreSQL 17 efímero, permisos de solo lectura y credenciales exclusivas de CI, sin secretos del proyecto.
 
 ## Despliegue
 
 - La aplicación se desplegará en Render.
 - El despliegue de Laravel en Render se realizará mediante Docker.
 - La imagen de despliegue utilizará Apache con la imagen oficial de PHP. La configuración inicial escucha en el puerto `10000` de Render.
+- Las migraciones de producción se aplicarán manualmente después de verificarlas; el arranque de Render no ejecutará migraciones automáticamente.
 
 ## Git
 

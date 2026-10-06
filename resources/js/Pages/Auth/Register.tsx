@@ -7,6 +7,7 @@ import styles from './Auth.module.css';
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
+        username: '',
         email: '',
         password: '',
         password_confirmation: '',
@@ -36,7 +37,24 @@ export default function Register() {
                     value={data.name}
                 />
                 <FormField
+                    autoCapitalize="none"
                     autoComplete="username"
+                    error={errors.username}
+                    id="username"
+                    label="Nombre de usuario"
+                    maxLength={30}
+                    minLength={3}
+                    name="username"
+                    onChange={(event) =>
+                        setData('username', event.target.value)
+                    }
+                    pattern="[A-Za-z0-9_]+"
+                    required
+                    spellCheck={false}
+                    value={data.username}
+                />
+                <FormField
+                    autoComplete="email"
                     error={errors.email}
                     id="email"
                     label="Correo electrónico"

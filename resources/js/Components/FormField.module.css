@@ -22,6 +22,11 @@
     border-color: #bd4d42;
 }
 
+.input:read-only {
+    background: #f0f3ee;
+    color: #59665b;
+}
+
 .error {
     margin: 0;
     color: #a13d34;

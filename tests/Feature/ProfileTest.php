@@ -24,12 +24,15 @@ class ProfileTest extends TestCase
     public function test_profile_information_can_be_updated(): void
     {
         $user = User::factory()->create();
+        $originalUsername = $user->username;
 
         $response = $this
             ->actingAs($user)
             ->patch('/profile', [
-                'name' => 'Test User',
-                'email' => 'test@example.com',
+                'name' => '  Test User  ',
+                'username' => 'attempted_change',
+                'email' => '  TEST@EXAMPLE.COM  ',
+                'bio' => '  Cocino cada día.  ',
             ]);
 
         $response
@@ -40,7 +43,45 @@ class ProfileTest extends TestCase
 
         $this->assertSame('Test User', $user->name);
         $this->assertSame('test@example.com', $user->email);
+        $this->assertSame('Cocino cada día.', $user->bio);
+        $this->assertSame($originalUsername, $user->username);
         $this->assertNull($user->email_verified_at);
+    }
+
+    public function test_empty_bio_is_stored_as_null(): void
+    {
+        $user = User::factory()->create(['bio' => 'Biografía anterior']);
+
+        $response = $this
+            ->actingAs($user)
+            ->patch('/profile', [
+                'name' => $user->name,
+                'email' => $user->email,
+                'bio' => '   ',
+            ]);
+
+        $response->assertSessionHasNoErrors();
+        $this->assertNull($user->refresh()->bio);
+    }
+
+    public function test_bio_longer_than_500_characters_is_rejected(): void
+    {
+        $user = User::factory()->create(['bio' => 'Biografía anterior']);
+
+        $response = $this
+            ->actingAs($user)
+            ->from('/profile')
+            ->patch('/profile', [
+                'name' => $user->name,
+                'email' => $user->email,
+                'bio' => str_repeat('a', 501),
+            ]);
+
+        $response
+            ->assertSessionHasErrors('bio')
+            ->assertRedirect('/profile');
+
+        $this->assertSame('Biografía anterior', $user->refresh()->bio);
     }
 
     public function test_email_verification_status_is_unchanged_when_the_email_address_is_unchanged(): void

@@ -90,8 +90,10 @@ El modelo contiene exactamente 20 tablas de dominio.
 - El orden de una colección se deriva de la fecha de incorporación y utiliza el identificador como desempate estable.
 - El seguimiento entre usuarios es dirigido, cada par seguidor-seguido es único y un usuario no puede seguirse a sí mismo.
 
-## Decisiones aplazadas
+## Estado ejecutable y decisiones aplazadas
 
-Este documento no define políticas de borrado, migración de datos existentes, autorización o moderación, contrato del primer administrador, integración técnica con Cloudinary ni mecanismos ejecutables para las reglas que afectan a varias filas o tablas.
+Las 20 tablas de dominio y su política de borrado físico protegido están materializadas por las migraciones de la especificación `006-conexion-migraciones-postgresql`. Los componentes subordinados se eliminan en cascada, los catálogos y autores en uso restringen el borrado, y las referencias opcionales aprobadas pasan a `NULL`.
+
+Siguen aplazados la autorización y moderación, el contrato del primer administrador, la integración técnica con Cloudinary y los mecanismos ejecutables para las reglas que necesitan observar varias filas o tablas. Estas últimas se implementarán mediante acciones transaccionales de Laravel, no mediante triggers.
 
 Consulta [Atributos del modelo relacional](atributos-modelo-relacional.md) para conocer el contrato detallado y el funcionamiento de cada relación.

@@ -6,7 +6,7 @@ Este documento es la referencia detallada vigente de las 20 tablas de dominio de
 
 La vista rápida de las relaciones y cardinalidades se encuentra en [Modelo relacional de Recetaria](modelo-relacional.md). El diagrama se mantiene únicamente allí para evitar divergencias.
 
-Este contrato todavía no constituye un esquema ejecutable: no crea migraciones, modelos ni restricciones en PostgreSQL y no decide cómo implementar las reglas que afectan a varias filas o tablas.
+Este contrato está materializado por las migraciones de la especificación `006-conexion-migraciones-postgresql`. PostgreSQL aplica columnas, claves, índices, unicidades, restricciones de una sola fila y acciones de borrado. Las reglas que necesitan observar varias filas o tablas siguen pendientes de acciones transaccionales de Laravel.
 
 ## Convenciones generales
 
@@ -19,7 +19,9 @@ Este contrato todavía no constituye un esquema ejecutable: no crea migraciones,
 - El correo, el nombre de usuario y los nombres de los catálogos se almacenan normalizados en minúsculas.
 - Las unicidades sobre valores normalizados rechazan duplicados que solo difieran en mayúsculas, minúsculas o espacios exteriores descartados.
 - Los identificadores `public_id` de Cloudinary utilizan `TEXT` y son únicos dentro de su tabla. No se almacenan URL derivables.
-- Las políticas `ON DELETE`, el borrado lógico, la migración de datos existentes y el mecanismo ejecutable de las reglas entre varias filas o tablas permanecen aplazados.
+- Las relaciones subordinadas usan borrado en cascada; los roles, catálogos y autores en uso restringen el borrado; `publication_images.recipe_id` y `comments.parent_comment_id` pasan a `NULL` al borrar su referencia.
+- El esquema utiliza borrado físico y no necesita migración de datos existentes porque se creó desde una base de aplicación vacía.
+- El mecanismo ejecutable de las reglas entre varias filas o tablas permanece aplazado.
 
 ## `roles`
 
@@ -433,6 +435,6 @@ Este contrato todavía no constituye un esquema ejecutable: no crea migraciones,
 
 ## Límites pendientes
 
-Quedan fuera de este contrato las políticas de borrado, el borrado lógico, la migración de usuarios o datos existentes, la autorización y moderación, el contrato del seeder del primer administrador, las credenciales y el SDK de Cloudinary y la elección de restricciones, transacciones, servicios o disparadores para ejecutar las reglas entre tablas.
+Quedan fuera de este contrato la autorización y moderación, el seeder o comando del primer administrador, las credenciales y el SDK de Cloudinary y las acciones transaccionales de Laravel que ejecutarán las reglas entre varias filas o tablas. No se usarán triggers para anticipar esas reglas.
 
 Consulta [Modelo relacional de Recetaria](modelo-relacional.md) para localizar visualmente estas relaciones.

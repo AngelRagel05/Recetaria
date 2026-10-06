@@ -16,6 +16,7 @@ export default function UpdateProfileInformationForm({
         useForm({
             name: user.name,
             email: user.email,
+            bio: user.bio ?? '',
         });
 
     function submit(event: FormEvent<HTMLFormElement>) {
@@ -26,8 +27,19 @@ export default function UpdateProfileInformationForm({
     return (
         <section className={styles.section}>
             <h2>Datos de la cuenta</h2>
-            <p>Actualiza tu nombre y correo electrónico.</p>
+            <p>Actualiza tu nombre, correo electrónico y biografía.</p>
             <form className={styles.form} onSubmit={submit}>
+                <FormField
+                    autoComplete="username"
+                    id="username"
+                    label="Nombre de usuario"
+                    name="username"
+                    readOnly
+                    value={user.username}
+                />
+                <p className={styles.hint}>
+                    El nombre de usuario no se puede cambiar.
+                </p>
                 <FormField
                     autoComplete="name"
                     error={errors.name}
@@ -38,7 +50,7 @@ export default function UpdateProfileInformationForm({
                     value={data.name}
                 />
                 <FormField
-                    autoComplete="username"
+                    autoComplete="email"
                     error={errors.email}
                     id="email"
                     label="Correo electrónico"
@@ -47,6 +59,30 @@ export default function UpdateProfileInformationForm({
                     type="email"
                     value={data.email}
                 />
+                <div className={styles.field}>
+                    <label className={styles.label} htmlFor="bio">
+                        Biografía
+                    </label>
+                    <textarea
+                        aria-describedby={errors.bio ? 'bio-error' : 'bio-help'}
+                        aria-invalid={Boolean(errors.bio)}
+                        className={styles.textarea}
+                        id="bio"
+                        maxLength={500}
+                        name="bio"
+                        onChange={(event) => setData('bio', event.target.value)}
+                        rows={5}
+                        value={data.bio}
+                    />
+                    <p className={styles.hint} id="bio-help">
+                        Máximo 500 caracteres.
+                    </p>
+                    {errors.bio && (
+                        <p className={styles.error} id="bio-error" role="alert">
+                            {errors.bio}
+                        </p>
+                    )}
+                </div>
                 {mustVerifyEmail && !user.email_verified_at && (
                     <p>
                         Tu correo no está verificado.{' '}
