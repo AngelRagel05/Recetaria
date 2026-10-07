@@ -83,6 +83,20 @@ function visualFiles(): string[] {
     return visualRoots.flatMap((root) => walk(join(jsRoot, root)));
 }
 
+function visualLeafDirectories(files: string[]): string[] {
+    return [
+        ...new Set(
+            files
+                .filter(
+                    (path) =>
+                        path.endsWith('.tsx') ||
+                        path.endsWith('.module.css'),
+                )
+                .map((path) => relative(jsRoot, dirname(path))),
+        ),
+    ].sort();
+}
+
 function expectedDepth(root: (typeof visualRoots)[number]): number[] {
     if (root === 'Pages') {
         return [4];
@@ -97,35 +111,40 @@ function expectedDepth(root: (typeof visualRoots)[number]): number[] {
 
 describe('arquitectura frontend', () => {
     test('mantiene una pareja TSX y CSS homónima en cada carpeta visual', () => {
-        const componentFiles = visualFiles().filter(
-            (path) => extname(path) === '.tsx',
-        );
-        const leaves = componentFiles
-            .map((path) => relative(jsRoot, dirname(path)))
-            .sort();
+        const leaves = visualLeafDirectories(visualFiles());
 
         expect(leaves).toEqual(requiredVisualLeaves);
 
-        for (const path of componentFiles) {
-            const parts = relativeParts(path);
+        for (const leaf of leaves) {
+            const directory = join(jsRoot, leaf);
+            const folderName = basename(directory);
+            const componentPath = join(directory, `${folderName}.tsx`);
+            const parts = relativeParts(componentPath);
             const root = parts[0] as (typeof visualRoots)[number];
-            const folderName = parts.at(-2);
-            const componentName = basename(path, '.tsx');
-            const directoryFiles = readdirSync(dirname(path)).sort();
+            const directoryFiles = readdirSync(directory).sort();
 
             expect(
                 expectedDepth(root),
-                `${relative(jsRoot, path)} tiene una profundidad no permitida`,
+                `${relative(jsRoot, componentPath)} tiene una profundidad no permitida`,
             ).toContain(parts.length);
             expect(
-                componentName,
-                `${relative(jsRoot, path)} no coincide con su carpeta`,
-            ).toBe(folderName);
-            expect(
                 directoryFiles,
-                `${relative(jsRoot, dirname(path))} debe contener solo su pareja visual`,
-            ).toEqual([`${componentName}.module.css`, `${componentName}.tsx`]);
+                `${leaf} debe contener solo su pareja visual`,
+            ).toEqual([`${folderName}.module.css`, `${folderName}.tsx`]);
         }
+    });
+
+    test('descubre una carpeta aunque solo contenga un CSS Module', () => {
+        const cssOnlyPath = join(
+            jsRoot,
+            'Components',
+            'Example',
+            'Example.module.css',
+        );
+
+        expect(visualLeafDirectories([cssOnlyPath])).toEqual([
+            join('Components', 'Example'),
+        ]);
     });
 
     test('limita los archivos auxiliares a las rutas aprobadas', () => {
