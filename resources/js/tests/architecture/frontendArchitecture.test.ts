@@ -89,8 +89,7 @@ function visualLeafDirectories(files: string[]): string[] {
             files
                 .filter(
                     (path) =>
-                        path.endsWith('.tsx') ||
-                        path.endsWith('.module.css'),
+                        path.endsWith('.tsx') || path.endsWith('.module.css'),
                 )
                 .map((path) => relative(jsRoot, dirname(path))),
         ),
