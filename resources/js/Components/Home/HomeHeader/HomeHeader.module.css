@@ -1,0 +1,113 @@
+.topbar {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: var(--border-default);
+    background: rgb(0 0 32 / 94%);
+    backdrop-filter: blur(16px);
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: var(--space-3);
+    color: var(--color-text);
+    font-size: 1.15rem;
+    font-weight: 850;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+}
+
+.brandMark {
+    display: grid;
+    width: 2.4rem;
+    height: 2.4rem;
+    place-items: center;
+    border-radius: var(--radius-small) var(--radius-small) var(--radius-small)
+        0.2rem;
+    background: var(--color-action);
+    color: var(--color-on-action);
+    font-family: var(--font-editorial);
+    font-size: 1.2rem;
+}
+
+.guestNav,
+.memberNav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+}
+
+.guestNav a,
+.memberNav a,
+.memberNav button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.65rem;
+    padding: 0.6rem 0.7rem;
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-text);
+    font-size: 0.82rem;
+    font-weight: 750;
+    text-align: center;
+    text-decoration: none;
+}
+
+.guestNav a:hover,
+.memberNav a:hover,
+.memberNav button:hover {
+    border-color: var(--color-action);
+    background: var(--color-surface-elevated);
+    color: var(--color-action-soft);
+}
+
+.primaryLink {
+    border-color: var(--color-action) !important;
+    background: var(--color-action) !important;
+    color: var(--color-on-action) !important;
+}
+
+.primaryLink:hover {
+    background: var(--color-action-soft) !important;
+}
+
+@media (min-width: 48rem) {
+    .topbar {
+        position: sticky;
+        top: 0;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        min-height: 4.75rem;
+        padding: var(--space-3) max(1.5rem, calc((100vw - 74rem) / 2));
+    }
+
+    .guestNav,
+    .memberNav {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+    }
+
+    .guestNav a,
+    .memberNav a,
+    .memberNav button {
+        padding: 0.65rem 0.9rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 90rem) {
+    .topbar {
+        padding-right: max(2rem, calc((100vw - 80rem) / 2));
+        padding-left: max(2rem, calc((100vw - 80rem) / 2));
+    }
+}

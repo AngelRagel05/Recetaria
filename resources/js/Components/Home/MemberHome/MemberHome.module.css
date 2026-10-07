@@ -1,0 +1,139 @@
+.feedPanel[hidden] {
+    display: none;
+}
+
+.heading {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    gap: var(--space-5);
+    margin-bottom: var(--space-8);
+}
+
+.heading > div:first-child {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.heading h1 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: clamp(2.35rem, 12vw, 3.8rem);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1.05;
+}
+
+.eyebrow {
+    margin: 0;
+    color: var(--color-action-soft);
+    font-size: 0.73rem;
+    font-weight: 850;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.tabs {
+    display: flex;
+    align-self: stretch;
+    gap: var(--space-1);
+    padding: var(--space-1);
+    border: var(--border-default);
+    border-radius: var(--radius-pill);
+    background: var(--color-surface);
+}
+
+.tabs button {
+    flex: 1;
+    min-height: 2.6rem;
+    padding: 0.65rem 0.9rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-text-muted);
+    font-weight: 800;
+}
+
+.tabs .activeTab {
+    background: var(--color-action);
+    color: var(--color-on-action);
+    box-shadow: var(--shadow-action);
+}
+
+.grid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: start;
+}
+
+.feedColumn {
+    min-width: 0;
+}
+
+.sideRail {
+    display: grid;
+    grid-row: 1;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    border: var(--border-default);
+    border-radius: var(--radius-large);
+    background: var(--color-surface);
+}
+
+.sideRail h2,
+.sideRail p {
+    margin: 0;
+}
+
+.sideRail h2 {
+    color: var(--color-text);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.sideRail > p:not(.eyebrow) {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+.localBadge {
+    justify-self: start;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-success);
+    border-radius: var(--radius-pill);
+    color: var(--color-success);
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+@media (min-width: 48rem) {
+    .heading {
+        align-items: flex-end;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    .tabs {
+        align-self: auto;
+    }
+
+    .tabs button {
+        flex: 0 0 auto;
+        min-width: 6.5rem;
+    }
+}
+
+@media (min-width: 90rem) {
+    .grid {
+        grid-template-columns: minmax(0, 44rem) minmax(16rem, 1fr);
+        gap: var(--space-16);
+    }
+
+    .sideRail {
+        position: sticky;
+        top: 6.5rem;
+        grid-row: 1;
+        grid-column: 2;
+    }
+}

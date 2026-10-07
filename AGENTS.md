@@ -170,6 +170,19 @@ Toda abstracción significativa debe resolver un problema real y actual. Se debe
 
 Los estilos específicos de componentes o páginas deben utilizar CSS Modules mediante archivos `*.module.css`, y los estilos globales deben utilizar archivos CSS globales. No se utilizará Bootstrap. El frontend generado por Laravel Breeze debe rehacerse con estas mismas convenciones, conservando las rutas y la lógica de autenticación necesarias, pero no sus estilos basados en Tailwind CSS. Tailwind debe eliminarse cuando deje de tener referencias en el proyecto.
 
+La arquitectura frontend oficial se organiza por áreas y utiliza carpetas visuales finales estrictas:
+
+- Las páginas siguen `resources/js/Pages/<Area>/<Page>/<Page>.tsx`.
+- Los componentes globales siguen `resources/js/Components/<Component>/<Component>.tsx`.
+- Los componentes de área siguen `resources/js/Components/<Area>/<Component>/<Component>.tsx`.
+- Los layouts siguen `resources/js/Layouts/<Layout>/<Layout>.tsx`.
+- Cada carpeta visual final contiene exclusivamente el TSX y el CSS Module homónimos. No contiene tipos, datos, hooks, utilidades, pruebas ni barrels.
+- Los imports internos que cruzan carpetas utilizan `@/`; únicamente el CSS Module propio se importa mediante una ruta relativa.
+- No se utilizan carpetas `Partials`, `Common`, `Sections` o `Features`, ni archivos `index.ts` como barrels.
+- Los tipos globales y pruebas permanecen en `resources/js/types` y `resources/js/tests`. `Hooks` y `Utils` son carpetas globales opcionales. Los datos y tipos propios de un área solo se crean en carpetas de apoyo aprobadas expresamente por su especificación.
+
+`resources/js/app.tsx` carga directamente `resources/css/global.css` una sola vez. Este CSS global se limita a variables, reset, tipografía, foco y utilidades verdaderamente compartidas; los estilos concretos pertenecen al CSS Module de cada pieza. El diseño parte de móvil y se amplía progresivamente para tableta y escritorio, sin mantener interfaces distintas por dispositivo.
+
 ## 8. Pruebas y calidad
 
 El proyecto tendrá pruebas backend en Laravel con PHPUnit, pruebas frontend con Vitest, jsdom y React Testing Library, lint frontend con ESLint, formato frontend con Prettier y build frontend con Vite.

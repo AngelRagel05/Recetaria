@@ -1,0 +1,79 @@
+.preview {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--space-5);
+    padding: var(--space-6);
+    border: var(--border-default);
+    border-radius: var(--radius-large);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-surface);
+    text-align: center;
+}
+
+.avatar {
+    display: grid;
+    flex: 0 0 5rem;
+    width: 5rem;
+    height: 5rem;
+    place-items: center;
+    border: 2px solid var(--color-action);
+    border-radius: 50%;
+    background: var(--color-surface-elevated);
+    color: var(--color-text);
+    font-size: 1.25rem;
+    font-weight: 850;
+}
+
+.preview p,
+.preview dl,
+.preview dd {
+    margin: 0;
+}
+
+.preview p {
+    margin-top: var(--space-1);
+    color: var(--color-text-muted);
+    line-height: 1.55;
+}
+
+.username {
+    color: var(--color-action-soft) !important;
+    font-weight: 800;
+}
+
+.preview dl {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-8);
+    margin-top: var(--space-5);
+}
+
+.preview dl div {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--space-1);
+}
+
+.preview dt {
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+}
+
+.preview dd {
+    color: var(--color-text);
+    font-size: 1.35rem;
+    font-weight: 850;
+}
+
+@media (min-width: 48rem) {
+    .preview {
+        align-items: flex-start;
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .preview dl {
+        justify-content: flex-start;
+    }
+}

@@ -1,0 +1,74 @@
+.title {
+    margin: 0 0 var(--space-5);
+    color: var(--color-text);
+    font-size: clamp(1.8rem, 9vw, 2.4rem);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+}
+
+.status {
+    margin: 0 0 var(--space-5);
+    padding: var(--space-3);
+    border-left: 3px solid var(--color-success);
+    background: var(--color-surface-elevated);
+    color: var(--color-success);
+    line-height: 1.5;
+}
+
+.form {
+    display: grid;
+    gap: var(--space-5);
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.checkbox input {
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--color-action);
+}
+
+.actions {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.button {
+    min-height: 2.9rem;
+    padding: 0.7rem 1rem;
+    border: 0;
+    border-radius: var(--radius-small);
+    background: var(--color-action);
+    color: var(--color-on-action);
+    font-weight: 800;
+}
+
+.button:hover {
+    background: var(--color-action-soft);
+}
+
+.registerPrompt {
+    margin: var(--space-2) 0 0;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+@media (min-width: 48rem) {
+    .actions {
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    .button {
+        min-width: 7rem;
+    }
+}

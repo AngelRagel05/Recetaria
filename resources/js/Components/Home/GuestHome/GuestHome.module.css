@@ -1,0 +1,178 @@
+.hero {
+    display: grid;
+    max-width: 54rem;
+    gap: var(--space-3);
+    padding: var(--space-6) 0 var(--space-10);
+}
+
+.hero h1 {
+    max-width: 50rem;
+    margin: 0;
+    color: var(--color-text);
+    font-size: clamp(2.45rem, 13vw, 4rem);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1.04;
+}
+
+.hero > p:last-child {
+    max-width: 42rem;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.eyebrow {
+    margin: 0;
+    color: var(--color-action-soft);
+    font-size: 0.73rem;
+    font-weight: 850;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.contentGrid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: start;
+}
+
+.feedColumn {
+    min-width: 0;
+}
+
+.sideRail {
+    display: grid;
+    grid-row: 1;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    border: var(--border-default);
+    border-radius: var(--radius-large);
+    background: var(--color-surface);
+}
+
+.sideRail h2,
+.sideRail p,
+.sideRail ol {
+    margin: 0;
+}
+
+.sideRail h2 {
+    color: var(--color-text);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.sideRail > p:not(.eyebrow),
+.sideRail li {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+.sideRail ol {
+    display: grid;
+    gap: var(--space-3);
+    padding-left: 1.3rem;
+}
+
+.guestCta {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-3);
+    margin: var(--space-6) var(--space-4) 0;
+    padding: var(--space-6);
+    border: 1px solid var(--color-action);
+    border-radius: var(--radius-large);
+    background: var(--color-surface-elevated);
+    color: var(--color-text);
+}
+
+.guestCta h2,
+.guestCta p {
+    margin: 0;
+}
+
+.guestCta h2 {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+    font-weight: 500;
+}
+
+.guestCta > p:not(.eyebrow) {
+    max-width: 34rem;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+}
+
+.ctaActions {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    gap: var(--space-2);
+    width: 100%;
+    margin-top: var(--space-1);
+}
+
+.ctaActions a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-pill);
+    color: var(--color-text);
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.primaryLink {
+    border-color: var(--color-action) !important;
+    background: var(--color-action);
+    color: var(--color-on-action) !important;
+}
+
+.primaryLink:hover {
+    background: var(--color-action-soft);
+}
+
+@media (min-width: 48rem) {
+    .hero {
+        padding: var(--space-10) 0 var(--space-16);
+    }
+
+    .hero h1 {
+        font-size: clamp(3.6rem, 8vw, 5.25rem);
+    }
+
+    .hero > p:last-child {
+        font-size: 1.12rem;
+    }
+
+    .guestCta {
+        margin-right: 0;
+        margin-left: 0;
+        padding: var(--space-10);
+    }
+
+    .ctaActions {
+        align-items: center;
+        flex-direction: row;
+        width: auto;
+    }
+}
+
+@media (min-width: 90rem) {
+    .contentGrid {
+        grid-template-columns: minmax(0, 44rem) minmax(16rem, 1fr);
+        gap: var(--space-16);
+    }
+
+    .sideRail {
+        position: sticky;
+        top: 6.5rem;
+        grid-row: 1;
+        grid-column: 2;
+    }
+}

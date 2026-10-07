@@ -34,6 +34,10 @@ Este documento recoge las decisiones técnicas iniciales aprobadas para Recetari
 
 - Se utilizará Vite.
 - El frontend utilizará TypeScript. Los componentes y páginas React emplearán archivos `*.tsx`, mientras que el código sin JSX empleará archivos `*.ts`.
+- Las páginas se organizan como `Pages/<Area>/<Page>/<Page>.tsx`, los componentes como `Components/<Component>/<Component>.tsx` o `Components/<Area>/<Component>/<Component>.tsx`, y los layouts como `Layouts/<Layout>/<Layout>.tsx`.
+- Cada carpeta visual final contiene exclusivamente un TSX y su CSS Module homónimo. Los tipos, datos, hooks, utilidades y pruebas viven fuera de esas carpetas.
+- Los imports internos entre carpetas utilizan `@/`; solo el CSS Module propio se importa relativamente. No se utilizan barrels `index.ts` ni carpetas `Partials`, `Common`, `Sections` o `Features`.
+- Inertia resuelve el nombre lógico `Area/Page` en `Pages/Area/Page/Page.tsx`. Laravel conserva sus URLs y nombres de rutas, aunque los componentes lógicos sigan esta organización interna.
 - npm será el gestor de paquetes frontend.
 - ESLint se utilizará para el lint frontend.
 - Prettier se utilizará para el formato frontend.
@@ -46,6 +50,11 @@ Este documento recoge las decisiones técnicas iniciales aprobadas para Recetari
 - No se utilizará Bootstrap.
 - Los estilos específicos de componentes o páginas utilizarán CSS Modules mediante archivos `*.module.css`.
 - Los estilos globales utilizarán archivos CSS globales.
+- `resources/js/app.tsx` carga directamente `resources/css/global.css` una sola vez; no existe un archivo CSS intermediario. El CSS global contiene variables, reset, tipografía, foco y utilidades realmente compartidas.
+- El diseño sigue un enfoque mobile first: la base cubre 320 píxeles y se amplía progresivamente para 768 y 1440 píxeles sin retirar funciones.
+- La interfaz utiliza un único tema oscuro. Su paleta base es fondo `#000020`, superficie `#171a4a`, superficie elevada `#2f2c79`, acción y foco `#ffff00`, resaltado `#ffff6a`, texto `#ffffff`, texto secundario `#c7c8e8`, éxito `#64e6a3`, error `#ff7b72`, información `#8da2ff` y texto sobre amarillo `#000020`.
+- El texto utiliza la pila tipográfica del sistema y los títulos editoriales utilizan Georgia. No se cargan fuentes externas ni existe selector de tema.
+- Texto, controles, estados y foco deben cumplir los contrastes de WCAG 2.2 nivel AA aprobados por el proyecto.
 - Los estilos Tailwind generados por Breeze no se utilizarán en el frontend definitivo de Recetaria.
 - Tailwind CSS debe eliminarse cuando las páginas y componentes generados hayan sido reemplazados y ya no exista ninguna referencia que lo necesite.
 

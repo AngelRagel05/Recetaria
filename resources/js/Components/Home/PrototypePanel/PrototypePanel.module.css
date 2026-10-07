@@ -1,0 +1,58 @@
+.panel {
+    display: grid;
+    max-width: 58rem;
+    gap: var(--space-3);
+    margin: var(--space-4) auto;
+}
+
+.panel > h1 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: clamp(2.5rem, 13vw, 4.5rem);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1.04;
+}
+
+.backButton {
+    justify-self: start;
+    min-height: 2.7rem;
+    margin-bottom: var(--space-8);
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-pill);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-weight: 800;
+}
+
+.backButton:hover {
+    border-color: var(--color-action);
+    background: var(--color-surface-elevated);
+    color: var(--color-action-soft);
+}
+
+.eyebrow {
+    margin: 0;
+    color: var(--color-action-soft);
+    font-size: 0.73rem;
+    font-weight: 850;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.note {
+    margin: 0 0 var(--space-5);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+@media (min-width: 48rem) {
+    .panel {
+        margin-top: var(--space-8);
+    }
+
+    .backButton {
+        margin-bottom: var(--space-10);
+    }
+}

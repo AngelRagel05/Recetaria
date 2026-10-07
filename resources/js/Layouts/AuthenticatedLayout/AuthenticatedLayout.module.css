@@ -1,0 +1,121 @@
+.page {
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgb(47 44 121 / 72%),
+            transparent 28rem
+        ),
+        var(--color-background);
+}
+
+.topbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: var(--border-default);
+    background: rgb(23 26 74 / 94%);
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text);
+    font-size: 0;
+    font-weight: 850;
+    text-decoration: none;
+}
+
+.brand span {
+    display: grid;
+    width: 2.4rem;
+    height: 2.4rem;
+    place-items: center;
+    border-radius: var(--radius-small) var(--radius-small) var(--radius-small)
+        0.2rem;
+    background: var(--color-action);
+    color: var(--color-on-action);
+    font-family: var(--font-editorial);
+    font-size: 1.2rem;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-1);
+    flex-wrap: wrap;
+}
+
+.navigation a,
+.navigation button {
+    min-height: 2.4rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-action-soft);
+    font-size: 0.82rem;
+    font-weight: 750;
+    text-decoration: none;
+}
+
+.navigation a:hover,
+.navigation button:hover {
+    border-color: var(--color-info);
+    background: var(--color-surface-elevated);
+    color: var(--color-text);
+}
+
+.content {
+    width: min(100% - 2rem, 70rem);
+    margin: 0 auto;
+    padding: var(--space-8) 0 var(--space-12);
+}
+
+.content > h1 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: clamp(2rem, 10vw, 3.75rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+}
+
+.greeting {
+    margin: var(--space-2) 0 var(--space-8);
+    color: var(--color-text-muted);
+}
+
+@media (min-width: 48rem) {
+    .topbar {
+        align-items: center;
+        padding: var(--space-4) max(1.5rem, calc((100vw - 70rem) / 2));
+    }
+
+    .brand {
+        font-size: 1.2rem;
+    }
+
+    .navigation {
+        gap: var(--space-2);
+    }
+
+    .navigation a,
+    .navigation button {
+        padding: 0.6rem 0.9rem;
+        font-size: 0.9rem;
+    }
+
+    .content {
+        padding-top: var(--space-12);
+    }
+}
+
+@media (min-width: 90rem) {
+    .content {
+        width: min(100% - 4rem, 76rem);
+    }
+}

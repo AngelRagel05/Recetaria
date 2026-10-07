@@ -1,0 +1,47 @@
+.panel {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    max-width: 42rem;
+    padding: var(--space-5);
+    border: var(--border-default);
+    border-radius: var(--radius-large);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-surface);
+}
+
+.panel > span {
+    display: grid;
+    flex: 0 0 2.75rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border-radius: var(--radius-medium);
+    background: var(--color-action);
+    color: var(--color-on-action);
+    font-size: 1.2rem;
+}
+
+.panel h2,
+.panel p {
+    margin: 0;
+}
+
+.panel h2 {
+    color: var(--color-text);
+    font-size: 1.45rem;
+    font-weight: 500;
+}
+
+.panel p {
+    margin-top: var(--space-2);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+@media (min-width: 48rem) {
+    .panel {
+        align-items: center;
+        padding: var(--space-8);
+    }
+}

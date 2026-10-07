@@ -1,0 +1,66 @@
+.title {
+    margin: 0;
+    color: var(--color-text);
+    font-size: clamp(1.8rem, 9vw, 2.4rem);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+}
+
+.description {
+    margin: var(--space-2) 0 var(--space-6);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+.status {
+    margin: 0 0 var(--space-5);
+    padding: var(--space-3);
+    border-left: 3px solid var(--color-success);
+    background: var(--color-surface-elevated);
+    color: var(--color-success);
+    line-height: 1.5;
+}
+
+.form {
+    display: grid;
+}
+
+.actions {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.button,
+.actions > button:last-child {
+    min-height: 2.9rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-small);
+    background: transparent;
+    color: var(--color-text);
+    font-weight: 800;
+}
+
+.button {
+    border-color: var(--color-action);
+    background: var(--color-action);
+    color: var(--color-on-action);
+}
+
+.button:hover {
+    background: var(--color-action-soft);
+}
+
+.actions > button:last-child:hover {
+    background: var(--color-surface-elevated);
+}
+
+@media (min-width: 48rem) {
+    .actions {
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+}
