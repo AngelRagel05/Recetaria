@@ -1,7 +1,7 @@
 ---
 id: "008"
 title: "Arquitectura frontend por áreas y tema oscuro"
-status: approved
+status: completed
 ---
 
 # Especificación: Arquitectura frontend por áreas y tema oscuro

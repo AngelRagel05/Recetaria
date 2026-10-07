@@ -29,6 +29,9 @@ Este documento recoge las decisiones técnicas iniciales aprobadas para Recetari
 - Las migraciones de `006-conexion-migraciones-postgresql` materializan desde cero las 20 tablas de dominio y las siete tablas técnicas necesarias, con identificadores `BIGINT`, nombres plurales y borrado físico protegido.
 - PostgreSQL aplica las reglas declarativas de una fila. Las reglas que necesitan observar varias filas o tablas se implementarán posteriormente mediante acciones transaccionales de Laravel, sin triggers.
 - Las tablas públicas de Laravel habilitan RLS sin políticas y retiran privilegios a `anon`, `authenticated` y `service_role`. La Data API se desactiva manualmente y Laravel conserva una conexión PostgreSQL directa.
+- La base desplegada en Supabase contiene datos reales y se trata como persistente. En ella están prohibidos `migrate:fresh`, `db:wipe`, los reinicios o reconstrucciones del esquema, los rollbacks remotos y las migraciones destructivas.
+- Los cambios remotos de esquema se harán exclusivamente mediante migraciones conservadoras hacia delante que preserven los datos existentes. Se comprobarán antes en local y CI, se aplicarán manualmente con autorización independiente y, ante un fallo, el proceso se detendrá sin rollback ni reintentos automáticos.
+- Solo la base local `recetaria_testing` y la base efímera de CI pueden reconstruirse durante las pruebas.
 
 ## Frontend y herramientas de build
 
