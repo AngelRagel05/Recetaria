@@ -2,28 +2,30 @@
 
 ## Foco actual
 
-La especificación [`008-arquitectura-frontend-y-tema-oscuro`](docs/specs/008-arquitectura-frontend-y-tema-oscuro/spec.md) está completada. El siguiente trabajo acordado será abrir la especificación 009 para la gestión colaborativa de recetas; todavía no se ha creado ni autoriza implementación alguna.
+La tarea activa es la especificación en borrador [`009-gestion-colaborativa-recetas`](docs/specs/009-gestion-colaborativa-recetas/spec.md). Define la creación persistente y colaborativa de recetas, invitaciones, perfiles públicos y desactivación reversible de cuentas.
 
 ## Estado actual
 
-- La arquitectura frontend por áreas, el tema oscuro y el enfoque mobile first están integrados en `dev` mediante `9ead215`.
-- La prueba arquitectónica detecta también CSS Modules huérfanos mediante `ae2002f`; su ajuste de formato está integrado mediante `eff125f`.
-- El desarrollador confirmó la revisión visual a 320, 768 y 1440 píxeles y el CI completo en verde sobre `eff125f`.
-- `test_reviewer` relacionó los criterios `CA-01` a `CA-19` con sus evidencias y emitió `PASS` sin bloqueos.
+- La especificación 008 está cerrada e integrada en `dev`.
+- El esquema ya contiene recetas y sus asociaciones, pero la aplicación todavía no tiene modelos, acciones, rutas ni pantallas reales para gestionarlas.
+- El desarrollador aprobó las reglas funcionales de recetas, coautoría, invitaciones, perfiles, desactivación, reactivación y catálogos recogidas en el borrador 009.
+- `spec_reviewer` emitió `PASS` para la especificación 009. Falta la aprobación humana explícita; no existen todavía `plan.md` ni `tasks.md` y no hay implementación autorizada.
 
 ## Contexto operativo
 
-- El cierre documental se prepara en `docs/cierre-arquitectura-frontend-y-tema-oscuro`, creada desde `dev` en `eff125ff8d5b73c4b36453d296f2524111704367`.
-- La publicación e integración de esta rama documental corresponden al desarrollador. El CI producido por ese cierre no reabre la implementación funcional ya verificada.
+- Rama de trabajo: `feat/gestion-colaborativa-recetas`.
+- Base de la rama: `dcd8954036f03eac3b5f5f2821a4fa810350cba0`.
 - Supabase contiene datos reales. La base desplegada no se borra, reconstruye ni revierte; los cambios futuros serán migraciones conservadoras hacia delante y requerirán autorización independiente para su aplicación remota.
+- El agente no publicará ni integrará la rama.
 
 ## Problemas conocidos y deuda técnica
 
-No hay bloqueos conocidos relacionados con la especificación 008.
+No hay bloqueos ni decisiones funcionales pendientes dentro del borrador. Falta la aprobación explícita del desarrollador.
 
 ## Siguientes pasos
 
-1. Crear el commit final del cierre documental, publicarlo e integrarlo en `dev`.
-2. Iniciar el flujo SDD de la especificación 009 sin comenzar su implementación hasta superar sus revisiones y aprobaciones.
+1. Obtener la aprobación explícita del desarrollador para `spec.md`.
+2. Cambiar la especificación a `approved` únicamente después de esa confirmación.
+3. Crear `plan.md` y `tasks.md` solo después de la aprobación y mediante la fase de planificación correspondiente.
 
 Estos pasos no autorizan automáticamente ramas, commits, publicación, integración ni implementación.
